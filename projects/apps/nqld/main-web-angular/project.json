@@ -1,0 +1,89 @@
+{
+  "name": "projects-apps-nqld--main-web-angular",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "erp",
+  "sourceRoot": "projects/apps/nqld/main-web-angular/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/projects/apps/nqld/main-web-angular",
+        "index": "projects/apps/nqld/main-web-angular/src/index.html",
+        "main": "projects/apps/nqld/main-web-angular/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "projects/apps/nqld/main-web-angular/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "projects/apps/nqld/main-web-angular/src/favicon.ico",
+          "projects/apps/nqld/main-web-angular/src/assets"
+        ],
+        "styles": ["projects/apps/nqld/main-web-angular/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "projects-apps-nqld--main-web-angular:build:production"
+        },
+        "development": {
+          "buildTarget": "projects-apps-nqld--main-web-angular:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "projects-apps-nqld--main-web-angular:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "projects/apps/nqld/main-web-angular/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "projects-apps-nqld--main-web-angular:build"
+      }
+    }
+  }
+}

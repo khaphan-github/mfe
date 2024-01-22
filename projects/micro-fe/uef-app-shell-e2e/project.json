@@ -1,0 +1,30 @@
+{
+  "name": "projects-micro-fe--uef-app-shell-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "projects/micro-fe/uef-app-shell-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "projects/micro-fe/uef-app-shell-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "projects-micro-fe--uef-app-shell:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "projects-micro-fe--uef-app-shell:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "projects-micro-fe--uef-app-shell:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["projects-micro-fe--uef-app-shell"]
+}
