@@ -23,7 +23,7 @@
         "styles": ["projects/micro-fe/hutech-app-shell/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
-          "path": "projects/micro-fe/hutech-app-shell/webpack.config.ts"
+          "path": "projects/micro-fe/hutech-app-shell/webpack.config.js"
         }
       },
       "configurations": {
@@ -42,7 +42,7 @@
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "projects/micro-fe/hutech-app-shell/webpack.prod.config.ts"
+            "path": "projects/micro-fe/hutech-app-shell/webpack.prod.config.js"
           }
         },
         "development": {

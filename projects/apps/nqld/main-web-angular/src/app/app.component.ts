@@ -9,6 +9,6 @@ import { NxWelcomeComponent } from './nx-welcome.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppChildComponent {
   title = 'projects-apps-nqld--main-web-angular';
 }

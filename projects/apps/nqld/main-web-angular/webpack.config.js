@@ -32,7 +32,7 @@ module.exports = {
         name: "projectsAppsNqldMainWebAngular",
         filename: "remoteEntry.js",
         exposes: {
-            './Component': './projects/apps/nqld/main-web-angular/src/app/app.component.ts',
+            './projectsAppsNqldMainWebAngular': './projects/apps/nqld/main-web-angular/src/app/app.component.ts',
         },
 
         // For hosts (please adjust)

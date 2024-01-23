@@ -37,7 +37,7 @@ module.exports = {
 
         // For hosts (please adjust)
         remotes: {
-            "projectsAppsNqldMainWebAngular": "http://localhost:4201/remoteEntry.js",
+            "projectsAppsNqldMainWebAngular": "projectsAppsNqldMainWebAngular@http://localhost:4201/remoteEntry.js",
         },
 
         shared: share({
