@@ -12,6 +12,10 @@ npx nx add @angular-architects/module-federation --project=projects-micro-fe--hu
 ```
 
 ```
+npx nx g @nx/angular:library zaa-search-bar --tags=ui --dir
+ectory=./projects/libs/frontend/
+
+
 npx nx run projects-micro-fe--hutech-app-shell:serve:development
 ```
 # Erp

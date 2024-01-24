@@ -1,0 +1,65 @@
+/* loading style when load new module */
+.loading-frame-wrap {
+    position: relative;
+    min-height: 200px;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Change the background color and opacity as needed */
+    z-index: 999;
+    /* Make sure it's above the table */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* backdrop-filter: blur(1px); */
+}
+
+.loading-overlay::after {
+    content: "Đợi tải dữ liệu";
+    font-size: 1.5rem;
+    /* Adjust font size as needed */
+    color: #333;
+    /* Adjust text color as needed */
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: loading-overlay-text;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.mod-skin-dark:not(.mod-skin-light) .loading-overlay {
+    /* background-color: rgba(var(--theme-dark), 0.9); */
+    /* background-color: var(--theme-dark); */
+    background-color: rgba(80, 80, 80, 0.7);
+}
+
+
+.mod-skin-dark:not(.mod-skin-light) .loading-overlay::after {
+    color: #c0c5c9;
+}
+
+@keyframes loading-overlay-text {
+    0% {
+        content: "Đợi tải dữ liệu";
+    }
+
+    25% {
+        content: "Đợi tải dữ liệu.";
+    }
+
+    50% {
+        content: "Đợi tải dữ liệu..";
+    }
+
+    75% {
+        content: "Đợi tải dữ liệu...";
+    }
+}

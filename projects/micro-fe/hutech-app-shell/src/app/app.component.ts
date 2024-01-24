@@ -1,14 +1,30 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { AfterViewInit, Component, OnInit, VERSION, inject, isDevMode } from '@angular/core';
+import { SmartAdminConfigService } from './smart-admin-config.service';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
   selector: 'erp-root',
+  imports: [
+    RouterOutlet,
+  ],
+  providers: [
+    SmartAdminConfigService,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'projects-micro-fe--hutech-app-shell';
+
+export class AppComponent implements OnInit, AfterViewInit {
+  private readonly smartAdminConfigService = inject(SmartAdminConfigService);
+
+  ngOnInit() {
+    if (isDevMode()) {
+      console.group(`Angular ${VERSION.full} Running in [development] mode`);
+      console.groupEnd();
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.smartAdminConfigService.activeJsAppComponent()
+  }
 }
