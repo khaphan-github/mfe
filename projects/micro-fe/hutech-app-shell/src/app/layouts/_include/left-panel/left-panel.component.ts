@@ -1,7 +1,7 @@
 
 import { AfterViewInit, Component, OnInit, isDevMode } from '@angular/core';
 import { Location } from '@angular/common';
-import { NEW_MENU } from '../../../config/left_menu.variables';
+import { NEW_MENU } from '../../../config/left-menu/left_menu.variables';
 import { SmartAdminConfigService } from '../../../smart-admin-config.service';
 import * as _ from 'lodash';
 /**

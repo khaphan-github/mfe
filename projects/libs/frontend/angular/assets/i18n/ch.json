@@ -1,0 +1,158 @@
+{
+  "app": {
+    "name": "汇泰ERP系统"
+  },
+  "navigation": {
+    "dashboard": "仪表盘",
+    "products": "产品",
+    "account": "账户",
+    "profile": "轮廓",
+    "settings": "设置",
+    "general": "一般的",
+    "security": "安全",
+    "demo": "演示",
+    "select2-example": "Select2 示例",
+    "datepicker-example": "日期选择器 示例",
+    "inputmask-example": "输入掩码 示例"
+  },
+  "error": {
+    "0": {
+      "title": "无法连接服务器",
+      "status": "0",
+      "message": "无法建立与服务器的连接。请检查您的网络连接并重试。",
+      "desc": "如果您遇到此问题，可能是由于服务器故障或您的计算机无法访问互联网。请检查您的网络连接，确保连接到正确的Wi-Fi网络或以太网电缆，并尝试重新加载网页或应用程序。如果问题仍然存在，请联系您的互联网服务提供商或系统管理员寻求帮助。"
+    },
+    "401": {
+      "title": "未经授权",
+      "status": "401",
+      "message": "您没有权限访问此资源。请使用有效的帐户登录。",
+      "desc": "401 未经授权错误发生在您尝试访问需要身份验证的资源，但您的登录信息无效或不存在。要解决此问题，请仔细检查您的登录信息，确保提供了正确的用户名和密码。如果您已登录但仍遇到此错误，请联系系统管理员或服务提供商寻求帮助解决。"
+    },
+    "403": {
+      "title": "禁止访问",
+      "status": "403",
+      "message": "您无权访问此资源。如果需要访问，请联系管理员。",
+      "desc": "403 禁止访问错误出现在您尝试访问无权访问的资源时。这可能是由于服务器或资源上配置的访问限制导致的。要解决问题，请联系系统管理员或资源所有者，了解获取访问权限的方法。"
+    },
+    "404Page": {
+      "title": "页面未找到 (Page Not Found)",
+      "status": "404",
+      "message": "您所查找的页面不存在。",
+      "desc": "当您请求访问一个页面但服务器上未找到该页面时，将出现该错误。这可能是由于您输入了错误的URL，或者该资源已被删除或移动。请检查URL并确保输入了正确的路径。如果您确认已经正确操作仍然遇到此错误，请联系系统管理员或资源所有者以了解更多信息。"
+    },
+    "404Api": {
+      "title": "功能停止",
+      "status": "404",
+      "message": "您所访问的功能当前已停止。"
+    },
+    "408": {
+      "title": "请求超时",
+      "status": "408",
+      "message": "您的请求超过了服务器的最大等待时间。",
+      "desc": "408 Request Timeout错误发生在您的请求在服务器指定的最大等待时间内未收到响应时。这通常发生在服务器负载过重或网络不稳定时。请检查网络连接并稍后再次尝试请求。如果问题仍然存在，请联系系统管理员或资源拥有者以获取进一步的支持。"
+    },
+    "500": {
+      "title": "服务器错误",
+      "status": "500",
+      "message": "服务器发生意外错误。请稍后重试。",
+      "desc": "500 服务器内部错误发生在服务器遇到无法处理您的请求的内部问题时。这可能是由于软件错误或服务器上的配置不正确导致的。要解决问题，请稍后重新加载页面或应用程序。如果错误仍然存在，请联系系统管理员或软件开发人员寻求支持解决问题。"
+    },
+    "page": {
+      "goback": "返回",
+      "errorLabel": "发生错误"
+    },
+    "invalidToken": {
+      "title": "登录会话已过期",
+      "desc": "您的会话已过期，请重新登录以继续"
+    }
+  },
+  "appUserMenu": {
+    "resetLayout": "重置布局",
+    "settings": "设置",
+    "fullscreen": "全屏",
+    "print": "打印",
+    "language": {
+      "label": "语言",
+      "english": "English",
+      "vietnamese": "Tiếng Việt",
+      "chinese": "中文",
+      "japanese": "日本語"
+    },
+    "pageLogout": "退出登录"
+  },
+  "features": {
+    "products": {
+      "header": "产品管理",
+      "listComponent": {
+        "button": {
+          "share": "分享",
+          "notifyMe": "通知我"
+        }
+      }
+    },
+    "account": {
+      "header": "账户管理"
+    },
+    "auth": {
+      "header": "祝{{ name }}有个美好的一天，今天是{{ date }}",
+      "login": {
+        "username": {
+          "label": "用户名",
+          "notifyMessage": "用户名在此应用中是唯一的",
+          "errorMessage": ""
+        },
+        "password": {
+          "label": "密码",
+          "notifyMessage": "您的密码",
+          "errorMessage": ""
+        },
+        "rememberMe": "记住登录状态",
+        "button": {
+          "signInWithGoogle": "使用谷歌登录",
+          "login": "登录",
+          "logout": "登出"
+        },
+        "rightPanel": {
+          "header": "内部信息门户",
+          "desc": "为所有教职员工提供的信息渠道。",
+          "moreinfo": "详细信息",
+          "contact": "联系我们"
+        }
+      }
+    }
+  },
+  "shared": {
+    "components": {
+      "pagination": {
+        "next": "下一页",
+        "previous": "上一页"
+      },
+      "customValidators": {
+        "errors": {
+          "required": "此项为必填项",
+          "minlength": "最小长度为 {{value}}",
+          "maxlength": "最大长度为 {{value}}",
+          "pattern": "无效值",
+          "email": "无效的电子邮件。请按照 Abc@gmail.域 的格式进行调整",
+          "min": "值太小，与 {{value}} 不符",
+          "max": "值太大，与 {{value}} 不符",
+          "numeric": "请输入数字",
+          "url": "无效的网址",
+          "date": "无效的日期",
+          "dateISO": "无效的日期 (ISO)",
+          "digits": "请输入数字",
+          "creditCard": "无效的信用卡",
+          "json": "无效的 JSON 数据",
+          "phone": "无效的电话号码",
+          "uuid": "无效的 UUID",
+          "equal": "值不相等",
+          "notEqual": "值不匹配",
+          "equalTo": "值不相同",
+          "notEqualTo": "值不匹配",
+          "unique": "值不唯一"
+        },
+        "success": "已验证！"
+      }
+    }
+  }
+}
