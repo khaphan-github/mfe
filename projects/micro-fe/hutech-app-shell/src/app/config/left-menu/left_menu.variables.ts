@@ -7,6 +7,7 @@ export const ACTION_LOCAL = [
 
 
 export const NEW_MENU = [
+  // --Region menu of host
   {
     icon: "fal fa-lg fa-fw fa-home",
     route: "/",
@@ -15,7 +16,9 @@ export const NEW_MENU = [
     dataI18n: "Trang chủ",
     actionId: '1000'
   },
+
   // --Region menu of mfe
   ...PROJECT_KTKL_LEFT_MENU,
   ...PROJECT_NQLD_LEFT_MENU,
+  // Other lefmenu route;
 ]

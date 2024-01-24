@@ -3,6 +3,8 @@ const mf = require("@angular-architects/module-federation/webpack");
 const path = require("path");
 const share = mf.share;
 
+const env = require('./src/app/config/environments/environment').environment;
+
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
   path.join(__dirname, '../../../tsconfig.base.json'),
@@ -26,28 +28,22 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-        library: { type: "module" },
+      library: { type: "module" },
+      remotes: {
+        // Remote module nọi quy lao động
+        "projectsAppsNqldMainWebAngular":
+          `projectsAppsNqldMainWebAngular@${env.microFeRemoteEntry.noiQuyLaoDong}/remoteEntry.js`,
 
-        // For remotes (please adjust)
-        // name: "projectsMicroFeHutechAppShell",
-        // filename: "remoteEntry.js",
-        // exposes: {
-        //     './Component': './projects/micro-fe/hutech-app-shell/src/app/app.component.ts',
-        // },
+        // Thêm những remote khác dưới dây
+      },
+      shared: share({
+        "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
-        // For hosts (please adjust)
-        remotes: {
-            "projectsAppsNqldMainWebAngular": "projectsAppsNqldMainWebAngular@http://localhost:4201/remoteEntry.js",
-        },
-
-        shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-
-          ...sharedMappings.getDescriptors()
-        })
+        ...sharedMappings.getDescriptors()
+      })
 
     }),
     sharedMappings.getPlugin()

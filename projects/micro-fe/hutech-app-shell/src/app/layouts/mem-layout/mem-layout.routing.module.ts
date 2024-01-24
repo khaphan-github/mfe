@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MemLayoutComponent } from './mem-layout.component';
 import { loadRemoteModule } from '@angular-architects/module-federation';
-const MFE_APP_URL = "http://localhost:4201/remoteEntry.js";
+import { environment } from '../../config/environments/environment';
 
 const memLayoutRoutes: Routes = [
   {
@@ -14,9 +14,9 @@ const memLayoutRoutes: Routes = [
         loadComponent: async () => {
           try {
             const m = await loadRemoteModule({
-              remoteEntry: MFE_APP_URL,
               type: 'module',
               exposedModule: "./projectsAppsNqldMainWebAngular",
+              remoteEntry: environment.microFeRemoteEntry.noiQuyLaoDong + '/remoteEntry.js',
             });
             console.log(m);
             return m.AppChildComponent;
@@ -26,6 +26,7 @@ const memLayoutRoutes: Routes = [
           }
         }
       }
+      // Add other remote entry;
     ]
   },
 ]

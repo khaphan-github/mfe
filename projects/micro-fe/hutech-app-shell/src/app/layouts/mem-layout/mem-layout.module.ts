@@ -7,9 +7,6 @@ import { LeftPanelComponent } from '../_include/left-panel/left-panel.component'
 import { PageHeaderComponent } from '../_include/page-header/page-header.component';
 import { PageSettingComponent } from '../_include/page-setting/page-setting.component';
 import { TabSettingComponent } from '../_include/page-setting/tab-setting/tab-setting.component';
-import { SmartAdminConfigService } from '../../smart-admin-config.service';
-
-
 
 @NgModule({
   declarations: [
@@ -24,6 +21,6 @@ import { SmartAdminConfigService } from '../../smart-admin-config.service';
     CommonModule,
     MemLayoutRoutingModule,
   ],
-  providers: [SmartAdminConfigService,]
+  providers: []
 })
 export class MemLayoutModule { }

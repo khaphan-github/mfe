@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (isDevMode()) {
-      console.group(`Angular ${VERSION.full} Running in [development] mode`);
+      console.group(`Angular ${VERSION.full}`);
       console.groupEnd();
     }
   }
