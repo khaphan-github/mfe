@@ -1,0 +1,65 @@
+<ul>
+  <li *ngFor="let item of []| paginate: {
+     itemsPerPage: pageInstance.itemsPerPage,
+     currentPage: pageInstance.currentPage,
+     totalItems: pageInstance.totalItems,
+     id: id,
+     }">
+  </li>
+</ul>
+<pagination-template #p="paginationApi" [id]="id" [maxSize]="maxSize" (pageChange)="onPageChanged($event)"
+  (pageBoundsCorrection)="pageBoundsCorrection.emit($event)">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center" [class.responsive]="responsive"
+      *ngIf="!(autoHide && p.pages.length <= 1)">
+
+      <li class="page-item" [class.disabled]="p.isFirstPage()" *ngIf="directionLinks">
+        <a class="page-link" tabindex="0" *ngIf="1 < p.getCurrent()" (keyup.enter)="p.previous()"
+          (click)="p.previous()">
+          <span class="show-for-sr" *transloco="let translated;">
+            {{ translated('shared.components.pagination.previous') }}
+            {{ screenReaderPageLabel }}
+          </span>
+        </a>
+        <span class="page-link" *ngIf="p.isFirstPage()" aria-disabled="true">
+          <span class="show-for-sr" *transloco="let translated;">
+            {{ translated('shared.components.pagination.previous') }}
+            {{ screenReaderPageLabel }}</span>
+        </span>
+      </li>
+
+      <li class="small-screen">
+        {{ p.getCurrent() }} / {{ p.getLastPage() }}
+      </li>
+
+      <li class="page-item" id="index-list" [class.current]="p.getCurrent() === page.value"
+        [class.ellipsis]="page.label === '...'" [ngClass]="p.getCurrent() !== page.value ? '' : 'active'"
+        *ngFor="let page of p.pages; trackBy: trackByIndex">
+        <a class="page-link" tabindex="0" (keyup.enter)="p.setCurrent(page.value)" (click)="p.setCurrent(page.value)"
+          *ngIf="p.getCurrent() !== page.value">
+          <span class="show-for-sr">{{ screenReaderPageLabel }} </span>
+          <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
+        </a>
+        <ng-container *ngIf="p.getCurrent() === page.value">
+          <span class="page-link" aria-live="polite">
+            <span class="show-for-sr">{{ screenReaderCurrentLabel }} </span>
+            <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
+          </span>
+        </ng-container>
+      </li>
+
+      <li class="page-item" id="pagination-next" [class.disabled]="p.isLastPage()" *ngIf="directionLinks">
+        <a class="page-link" tabindex="0" *ngIf="!p.isLastPage()" (keyup.enter)="p.next()" (click)="p.next()">
+          <span class="show-for-sr" *transloco="let translated;">
+            {{translated('shared.components.pagination.next') }}
+            {{ screenReaderPageLabel }}</span>
+        </a>
+        <span class="page-link" *ngIf="p.isLastPage()" aria-disabled="true">
+          <span class="show-for-sr" *transloco="let translated;">
+            {{translated('shared.components.pagination.next') }}
+            {{ screenReaderPageLabel }}</span>
+        </span>
+      </li>
+    </ul>
+  </nav>
+</pagination-template>

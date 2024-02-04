@@ -1,0 +1,24 @@
+
+<div class="form-group row">
+  <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">{{label}}</label>
+  <div class="col-12 col-lg-6">
+    <div class="input-group">
+      <input (click)="isRange ? pickerRange.open() : picker.open()" [placeholder]="placeholder" [readonly]="readonly" type="text" class="form-control" [value]="startDateFormatted + (isRange ? (startDateFormatted && ' - ') : '') + (endDateFormatted??'')">
+      <div *ngIf="hasIcon" class="input-group-append">
+        <div class="input-group-text">
+          <i class="fal" [class]="icon"></i>
+        </div>
+      </div>
+      <mat-form-field class="custom-datepicker-mat" (click)="isRange ? pickerRange.open() : picker.open()">
+        <mat-date-range-input *ngIf="isRange" [rangePicker]="pickerRange" >
+          <input matStartDate placeholder="Start date" [id]="'start-'+id" [(ngModel)]="startDate" (dateChange)="onDateChange($event, 'startDate')">
+          <input matEndDate placeholder="End date"  [id]="'end-'+id" [(ngModel)]="endDate" (dateChange)="onDateChange($event, 'endDate')">
+        </mat-date-range-input>
+        <input *ngIf="!isRange" matInput [matDatepicker]="picker" [placeholder]="placeholder" [readonly]="readonly" [id]="id" [(ngModel)]="value" (dateChange)="onDateChange($event)"/>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-date-range-picker #pickerRange></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+

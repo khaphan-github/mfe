@@ -14,11 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@erp/projects/libs/frontend/angular/ui/components/zaa-search-bar": [
-        "projects/libs/frontend/angular/ui/components/zaa-search-bar/src/index.ts"
-      ]
-    }
+    "paths": {}
   },
   "exclude": ["node_modules", "tmp"]
 }

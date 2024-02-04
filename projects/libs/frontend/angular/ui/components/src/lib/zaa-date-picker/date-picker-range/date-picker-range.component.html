@@ -1,0 +1,10 @@
+<div class="position-relative" [ngClass]="{'input-group':hasIcon}">
+  <label class="form-control position-absolute w-100" [ngStyle]="{'z-index':0}" [for]="id">{{startDateFormatted}} {{singleDatePicker ? "" : startDateFormatted && "-" }} {{endDateFormatted}}</label>
+  <input #datepickerRangeInput type="text" class="form-control" [ngStyle]="{'opacity':'0'}" [id]="id" readonly [placeholder]="placeholder"
+  (blur)="onTouched()" [disabled]="disabled" [class.disabled]="disabled">
+  <div *ngIf="hasIcon" class="input-group-append" [ngStyle]="{'z-index':1}">
+    <span class="input-group-text fs-xl">
+      <i [class]="'fal ' + icon"></i>
+    </span>
+  </div>
+</div>

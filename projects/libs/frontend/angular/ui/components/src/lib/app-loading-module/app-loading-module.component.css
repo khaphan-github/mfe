@@ -1,0 +1,53 @@
+.background {
+  position: fixed;
+  z-index: 1999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(var(--theme-rgb-primary), 0.6);
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.spinner {
+  position: fixed;
+  z-index: 2000;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loader--text:after {
+  content: "Loading";
+  font-weight: bold;
+  font-size: larger;
+  animation-name: loading-text;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+
+@keyframes loading-text {
+  0% {
+    content: "Loading";
+  }
+  25% {
+    content: "Loading.";
+  }
+  50% {
+    content: "Loading..";
+  }
+  75% {
+    content: "Loading...";
+  }
+}

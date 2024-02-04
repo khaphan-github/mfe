@@ -1,0 +1,18 @@
+<div class="menu-template-container"
+  *ngIf="menuCtrl"
+  #dropdownMenu
+  [style.top]="menuCtrl.position.top + 'px'"
+  [style.left]="menuCtrl.position.left + 'px'"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  >
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="isMenuOpen"
+  >
+    <ng-container
+      *ngTemplateOutlet="menuTemplate;
+      context: menuCtrl.context">
+    </ng-container>
+  </ng-template>

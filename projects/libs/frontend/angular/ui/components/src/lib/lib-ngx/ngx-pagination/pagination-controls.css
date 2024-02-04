@@ -1,0 +1,21 @@
+.pagination .small-screen {
+  display: none;
+}
+
+@media screen and (max-width: 601px) {
+  .pagination .small-screen {
+    margin-right: 5px;
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #index-list {
+    display: none;
+  }
+}
+
+.page-link {
+  cursor: pointer;
+}

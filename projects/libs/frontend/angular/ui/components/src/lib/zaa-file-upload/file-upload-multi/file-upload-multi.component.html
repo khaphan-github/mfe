@@ -1,0 +1,109 @@
+<input
+  #uploadEl
+  type="file"
+  name="files"
+  class="form-control"
+  ng2FileSelect
+  [uploader]="_uploader"
+  multiple
+  *ngIf="!option.lockUpload"
+/>
+<div>
+  <div *ngIf="messageAllowType" class="text-danger">
+    <i>Cho phép upload các file định dạng: {{ messageAllowType }}</i>
+  </div>
+  <div *ngIf="option.sizeCheck" class="text-danger">
+    <i>Kích thước tối đa: {{ option.sizeCheck }} MB/file</i>
+  </div>
+</div>
+<ng-container *ngIf="_uploader && _uploader.queue.length > 0">
+  <p>File upload: {{ _uploader.queue.length || 0 }}</p>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="text-center align-middle" width="1">STT</th>
+        <th class="text-center align-middle" >Tên file</th>
+        <th class="text-center align-middle" width="90px">Kích thước</th>
+        <th class="text-center align-middle" width="1">Loại</th>
+        <th class="text-center align-middle" width="150px">Quá trình</th>
+        <th class="text-center align-middle" width="108px">
+          <a class="text-info cursor-pointer" style="text-decoration: underline !important;" (click)="_uploader.clearQueue()" >Xóa hết</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="_uploader && _uploader.queue.length === 0">
+        <td colspan="5" class="text-center align-middle">Không có file nào</td>
+      </tr>
+      <tr *ngFor="let item of _uploader.queue; let i = index">
+        <td class="text-center align-middle">{{ i + 1 }}</td>
+        <td class="text-left align-middle">
+          <strong class="clamped-text">{{ item.file.name }}</strong>
+        </td>
+        <td class="text-center align-middle">
+          {{ item.file.size / 1024 / 1024 | number : ".2" }} MB
+        </td>
+        <td class="text-center align-middle">
+          <i class="{{ item['cssClassFileIcon'] }}"> </i>
+        </td>
+        <td class="text-left align-middle">
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{ width: item.progress + '%' }"
+            ></div>
+          </div>
+        </td>
+        <td class="text-center align-middle">
+          <div class="">
+            <a class="ni ni-trash btn text-danger" (click)="item.remove()"></a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-container *ngIf="_uploadedFiles && _uploadedFiles.length > 0">
+  <p>File đã upload: {{ _uploadedFiles.length || 0 }}</p>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="text-center align-middle" width="1">STT</th>
+        <th class="text-center align-middle" width="100px" *ngIf="option.isShowPicture">
+          Hình ảnh
+        </th>
+        <th class="text-center align-middle">Tên file</th>
+        <th class="text-center align-middle" width="1">Loại</th>
+        <th class="text-center align-middle" width="108px">
+          <a class="text-info cursor-pointer" style="text-decoration: underline !important;" (click)="handleDeleteAll()">Xóa hết</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="_uploadedFiles && _uploadedFiles.length === 0">
+        <td colspan="4" class="text-center">không có file nào</td>
+      </tr>
+      <tr *ngFor="let item of _uploadedFiles; let i = index" >
+        <td class="text-center align-middle">{{ i + 1 }}</td>
+        <td *ngIf="option.isShowPicture" class="text-center">
+            <img class="rounded img-fluid w-100 h-100" style="object-fit: contain;" [src]="item.path" onError="this.src='assets/img/no-image-available.jpg'" alt="img">
+        </td>
+        <td class="text-left align-middle">
+          <strong class="clamped-text">
+            <a [href]="item.path">{{ item.name }}</a>
+          </strong>
+        </td>
+        <td class="text-center align-middle">
+          <i class="{{ item['cssClassFileIcon'] }}"> </i>
+        </td>
+        <td class="text-center align-middle">
+          <a
+            (click)="handleDeletOne(item)"
+            class="ni ni-trash btn text-danger"
+          ></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

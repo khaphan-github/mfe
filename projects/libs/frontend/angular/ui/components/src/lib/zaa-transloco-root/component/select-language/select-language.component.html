@@ -1,0 +1,10 @@
+<div class="dropdown-multilevel dropdown-multilevel-left">
+  <div class="dropdown-item" transloco="layouts.appUserMenu.language.label"> </div>
+
+  <div class="dropdown-menu">
+    <a *ngFor="let language of languages" (click)="onChangeLanguage(language.id)" class="dropdown-item"
+      [ngClass]="{ 'active': currentLanguage === language.id }" [class.disabled]="language.id !='vi' && language.id !='es'" data-action="lang" data-lang="language.code">
+      <div transloco="{{language.name}}"></div>
+    </a>
+  </div>
+</div>

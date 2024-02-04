@@ -1,0 +1,7 @@
+:host {
+  .menu-template-container {
+    position: absolute;
+    z-index: 2147483647; // Max number of z-index --> alway on top
+    width: 265px;
+  }
+}

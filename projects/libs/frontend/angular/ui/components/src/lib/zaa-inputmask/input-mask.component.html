@@ -1,0 +1,8 @@
+<div [ngClass]="{'input-group':hasIcon}">
+  <div *ngIf="hasIcon" class="input-group-prepend">
+      <span class="input-group-text"><i class="fal width-1 text-align-center" [class]="icon"></i></span>
+  </div>
+  <input #inputmask type="text" [placeholder]="placeholder" [attr.data-inputmask]="formattedInputMask(type,format)" class="form-control"
+  (blur)="onTouched()" [disabled]="disabled" [class.disabled]="disabled">
+</div>
+<span *ngIf="hasHelpBlock" class="help-block">e.g "{{format}}"</span>

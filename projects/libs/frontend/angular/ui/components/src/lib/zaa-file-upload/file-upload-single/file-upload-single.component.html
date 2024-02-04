@@ -1,0 +1,39 @@
+  <div [ngClass]="{'d-none': option.isHidden}">
+    <ng-container *ngIf="option.choices.length>1 && !params.fileId" >
+      <div class="d-flex" style="gap: 1rem;">
+        <span *ngFor="let item of keysToggleBtn; let i = index" class="d-flex" style="gap: 2px;">
+          <input type="radio" [id]="option.name+item" [name]="option.name" [checked]="_btn[item].checked" (change)="ChangeStatusToggleBtn(item)" style="width: 20px;">
+          <label [for]="option.name+item">{{_btn[item].header}}</label>
+        </span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="_btn[1] && _btn[1].checked">
+      <div *ngIf="option.isHidden || !params.fileId" class="d-flex flex-column" style="gap: 3px;">
+        <input #uploadEl type="file" name="files" ng2FileSelect [uploader]="_uploader" class="form-control form-control-file">
+        <div *ngIf="messageAllowType" class="text-danger">
+          <i><span [transloco]="pathKeyNgonNgu + 'dinh_dang_cho_phep'"></span>: {{messageAllowType}}</i>
+        </div>
+        <div *ngIf="option.sizeCheck" class="text-danger">
+          <i><span [transloco]="pathKeyNgonNgu + 'kich_thuoc_toi_da'"></span>: {{option.sizeCheck}} MB</i>
+        </div>
+      </div>
+      <div *ngIf="params.fileId && !params.fileLink" class="">
+        <strong><span [transloco]="pathKeyNgonNgu + 'file_da_upload'"></span>: </strong>
+        <a [href]="params.uploadPath">{{params.fileName}} - {{ params.fileSize| number:'.2'}} MB </a>
+        <a (click)="handleDelete(params)" class="ni ni-trash btn"></a>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="_btn[2] && _btn[2].checked" >
+      <div class="my-2">
+      <input *ngIf="!params.fileId" #dataFile type="text" class="form-control" (keyup)="inputLinkFile(dataFile.value)">
+      <div *ngIf="option.thumb && params.fileLink" class="mt-2" style="width: 100px; height: 100px;">
+        <img class="rounded img-fluid h-100 w-100" style="object-fit: contain;" [src]="params.fileLink" onError="this.src='assets/img/no-image-available.jpg'" alt="img">
+      </div>
+      <div *ngIf="params.fileId">
+        <strong>Link: </strong>
+        <a [href]="params.fileLink">{{params.fileLink}}</a>
+        <a (click)="handleDeleteLink()" class="ni ni-trash btn"></a>
+      </div>
+    </div>
+  </ng-container>
+</div>

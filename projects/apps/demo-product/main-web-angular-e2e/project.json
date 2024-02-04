@@ -1,0 +1,30 @@
+{
+  "name": "projects-apps-demo-product-main-web-angular-e2e",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "projects/apps/demo-product/main-web-angular-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "projects/apps/demo-product/main-web-angular-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "projects-apps-demo-product-main-web-angular:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "projects-apps-demo-product-main-web-angular:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "projects-apps-demo-product-main-web-angular:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["projects-apps-demo-product-main-web-angular"]
+}

@@ -1,0 +1,78 @@
+<span class="text-muted mr-1 mr-lg-2 ml-auto">
+  {{_intl.getRangeLabel(pageIndex, pageSize, length)}}
+</span>
+
+
+<button class="btn btn-icon rounded-circle waves-effect waves-themed" [title]="_intl.firstPageLabel"
+  (click)="firstPage()" [disabled]="_previousButtonsDisabled()" *ngIf="showFirstLastButtons"><i
+    class="ni ni-control-start fs-md"></i></button>
+
+
+<!--
+      <button mat-icon-button type="button"
+              class="mat-mdc-paginator-navigation-previous"
+              (click)="previousPage()"
+              [attr.aria-label]="_intl.previousPageLabel"
+              [matTooltip]="_intl.previousPageLabel"
+              [matTooltipDisabled]="_previousButtonsDisabled()"
+              [matTooltipPosition]="'above'"
+              [disabled]="_previousButtonsDisabled()">
+        <svg class="mat-mdc-paginator-icon"
+             viewBox="0 0 24 24"
+             focusable="false"
+             aria-hidden="true">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+      </button> -->
+<button class="btn btn-icon rounded-circle waves-effect waves-themed" [title]="_intl.previousPageLabel"
+  (click)="previousPage()" [disabled]="_previousButtonsDisabled()"><i class="fal fa-chevron-left fs-md"></i></button>
+
+<button class="btn btn-icon rounded-circle waves-effect waves-themed" [title]="_intl.nextPageLabel" (click)="nextPage()"
+  [disabled]="_nextButtonsDisabled()"><i class="fal fa-chevron-right fs-md"></i></button>
+
+<button class="btn btn-icon rounded-circle waves-effect waves-themed" [title]="_intl.lastPageLabel" (click)="lastPage()"
+  [disabled]="_nextButtonsDisabled()" *ngIf="showFirstLastButtons"><i class="ni ni-control-end fs-md"></i></button>
+
+
+<!-- <div class="btn-group dropleft"> -->
+<button [id]="_pageSizeLabelId" [matMenuTriggerFor]="menuPageSize"
+  class="btn btn-icon rounded-circle waves-effect waves-themed" aria-haspopup="true" aria-expanded="false">
+  <i class="fal fa-ellipsis-v-alt"></i>
+</button>
+<mat-menu #menuPageSize="matMenu">
+
+  <!-- <div class="dropdown-menu"  -->
+  <!-- [class.show]="this.showDropdown"
+  [attr.aria-labelledby]="_pageSizeLabelId"> -->
+  <!-- <div class="dropdown-menu"> -->
+    <!-- PAGE SIZE OPTIONS -->
+    <h6 class="dropdown-header">Hiển thị tối đa</h6>
+    <a class="dropdown-item cursor-pointer" *ngFor="let item of this.pageSizeOptions; trackBy:this.trackByFn"
+      [class.active]="item == this.pageSize" (click)="_changePageSize(item)">
+      {{item}} dòng
+    </a>
+    <!-- PAGE SIZE OPTIONS -->
+
+    <!-- <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="javascript:void(0)">Another actionxxxxx</a> -->
+    <!-- </div> -->
+  <!-- </div> -->
+</mat-menu>
+<!-- </div> -->
+
+
+<!--
+<div class="mat-mdc-paginator-page-size" *ngIf="!hidePageSize">
+  <mat-form-field *ngIf="_displayedPageSizeOptions.length > 1" [appearance]="_formFieldAppearance!" [color]="color"
+    class="mat-mdc-paginator-page-size-select w-20">
+    <mat-select [value]="pageSize" [disabled]="disabled" [aria-labelledby]="_pageSizeLabelId"
+      [panelClass]="selectConfig.panelClass || ''" [disableOptionCentering]="selectConfig.disableOptionCentering"
+      (selectionChange)="_changePageSize($event.value)" hideSingleSelectionIndicator>
+      <mat-option *ngFor="let pageSizeOption of _displayedPageSizeOptions" [value]="pageSizeOption">
+        {{pageSizeOption}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="mat-mdc-paginator-page-size-value" *ngIf="_displayedPageSizeOptions.length <= 1">{{pageSize}}</div>
+</div> -->

@@ -1,3 +1,4 @@
+import { PROJECT_DEMO_PRODUCT_LEFT_MENU } from "./project-demo-product.left-menu"
 import { PROJECT_KTKL_LEFT_MENU } from "./project-ktkl.left-menu"
 import { PROJECT_NQLD_LEFT_MENU } from "./project-nqld.left-menu"
 
@@ -20,5 +21,6 @@ export const NEW_MENU = [
   // --Region menu of mfe
   ...PROJECT_KTKL_LEFT_MENU,
   ...PROJECT_NQLD_LEFT_MENU,
+  ...PROJECT_DEMO_PRODUCT_LEFT_MENU,
   // Other lefmenu route;
 ]
