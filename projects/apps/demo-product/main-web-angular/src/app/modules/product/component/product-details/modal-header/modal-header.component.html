@@ -1,0 +1,12 @@
+<div class="row d-flex" *ngIf="this.product$ | async as product">
+  <span class="ml-3 text-uppercase font-weight-bolder"> Tên mạc định: {{ this.product.name_default}} </span>
+  <div
+       class="text-uppercase btn-xs color-success-600 bg-success-50 font-weight-bold px-3 py-1 rounded-pill ml-3">
+    @if(this.product.current_status === 'active'){
+    published <i class="fal fa-check mr-2">
+    </i>
+    } @else {
+    unpublished <i class="fal fa-check mr-2"></i>
+    }
+  </div>
+</div>

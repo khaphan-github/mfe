@@ -1,0 +1,63 @@
+<div class="modal-header container border-bottom">
+  <h4 class="modal-title">Tạo sản phẩm</h4>
+  <button class="close"
+          [disabled]="this.isSaving"
+          [style.cursor]="this.isSaving ? 'not-allowed':'pointer'"
+          (click)="this.activeModal.close()">
+    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+  </button>
+</div>
+<div class="modal-body container">
+
+  @if(this.displayErrorMessage) {
+  <div role="alert" class="alert alert-danger ng-star-inserted">
+    <strong>{{this.displayErrorMessage}}</strong>
+  </div>
+  }
+
+  <form [formGroup]="formComponent">
+    <div class="row">
+      <div class="col-md-12">
+        <label>
+          Tên sản phẩm: <span class="text-danger">*</span>
+        </label>
+        <input class="form-control"
+               type="text"
+               formControlName="name">
+
+        @if(this.formComponent.get('name')?.hasError('required')
+        && this.formComponent.get('name')?.dirty) {
+        <div class="invalid-feedback d-block">
+          <span>
+            Tên không được phép để trống
+          </span>
+        </div>
+        }
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer container border-top">
+  <button class="btn btn-primary"
+          [disabled]="this.canNotSubmit()"
+          [style.cursor]="this.canNotSubmit() ? 'not-allowed':'pointer'"
+          (click)="onSubmitAndReturnList('detail')">
+    <span *ngIf="isSaving"
+          class="spinner-grow spinner-grow-sm mr-1"
+          role="status" aria-hidden="true">
+    </span>
+    {{ isSaving ? 'Đang Lưu' : 'Lưu lại và chuyển sang chi tiết'}}
+  </button>
+  <button class="btn btn-primary mr-1"
+          [disabled]="this.canNotSubmit()"
+          [style.cursor]="this.canNotSubmit() ? 'not-allowed':'pointer'"
+          (click)="onSubmitAndReturnList('list')">
+    <span *ngIf="isSaving"
+          class="spinner-grow spinner-grow-sm mr-1"
+          role="status"
+          aria-hidden="true">
+    </span>
+    {{ isSaving ? 'Đang Lưu' : 'Lưu lại và trở về danh sách'}}
+  </button>
+</div>

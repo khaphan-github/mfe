@@ -1,0 +1,20 @@
+<h3 class="font-weight-bold">Nhập thông tin cho
+  <strong>
+    {{ this.selectedItems.length + 1}} dòng dữ liệu
+  </strong>
+
+
+</h3>
+<form [formGroup]="form">
+  <label for="textInput" class="label">Mô tả sản phẩm:</label>
+  <input class="form-control"
+         type="text"
+         id="textInput"
+         [formControlName]="'description'" />
+</form>
+<label for="textInput" class="label">Files:</label>
+<file-upload-multi #uploadFileViewChild
+                   [option]="optionsFile"
+                   (onChangeFile)="onChangeFile($event)"
+                   (onInitUploader)="this.fileUploader = $event">
+</file-upload-multi>

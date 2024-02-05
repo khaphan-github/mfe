@@ -22,7 +22,12 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "projects/apps/demo-product/main-web-angular/src/favicon.ico",
-          "projects/apps/demo-product/main-web-angular/src/assets"
+          "projects/apps/demo-product/main-web-angular/src/assets",
+          {
+            "glob": "**/*",
+            "input": "projects/libs/frontend/angular/assets/",
+            "output": "./assets"
+          }
         ],
         "styles": [
           "projects/apps/demo-product/main-web-angular/src/styles.scss"

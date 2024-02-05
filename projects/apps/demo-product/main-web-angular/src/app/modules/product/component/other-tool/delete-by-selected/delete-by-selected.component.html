@@ -1,0 +1,118 @@
+<div class="modal-header container border-bottom">
+  <h4 class="modal-title">
+    <span class="mr-2">Xóa nhiều dòng dữ liệu</span>
+  </h4>
+  <div class="panel-toolbar">
+  </div>
+</div>
+<div class="modal-body container" *ngIf="this.selectedItems">
+  <!-- SELECTED ITEMS -->
+  <h3 class="font-weight-bold">Tổng số dòng đã chọn: {{this.selectedItems.length}} dòng.</h3>
+  <div *ngIf="this.showViewSelectedItems">
+    <div class="lock-loading-frame-wrap">
+      <div class="lock-loading-overlay" *ngIf="this.showProcessBar">
+        <div class="col">
+          <div class="h5 font-weight-bold ml-1">
+            Đang xử lý dữ liệu:
+          </div>
+          <div class="progress progress-lg w-100">
+            <div aria-label="ProcessBar"
+                 class="progress-bar"
+                 aria-valuemin="0"
+                 role="progressbar"
+                 [style.width.%]="(this.progressValue/this.selectedItems.length * 100)"
+                 [attr.aria-valuenow]="this.progressValue"
+                 [attr.aria-valuemax]="this.selectedItems.length">
+              <span style="color: white;">
+                Tiến trình: {{(this.progressValue/this.selectedItems.length * 100) | number: '1.0-0' }}%
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table m-0 table-striped" *ngIf="this.selectedItems.length !== 0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Sản phẩm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of this.selectedItems; let i = index;">
+            <tr *ngIf="i < this.selectedItemVisibleCount">
+              <td>{{ i + 1}}</td>
+              <td class="cursor-pointer"><strong>ID:{{item.id}}</strong> -
+                {{ item.name_default }}
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <span class="fw-300 m-3" style="float: right; cursor: pointer;"
+            *ngIf="this.selectedItems.length > this.selectedItemVisibleCount"
+            (click)="this.showMoreSelected()"><i><u><strong>Xem
+              thêm</strong></u></i></span>
+    </div>
+  </div>
+  <!-- SELECTED ITEMS -->
+  <!-- REPORT -->
+  <div class="alert alert-primary" *ngIf="this.showViewReportTemplate ">
+    <div class="d-flex flex-fill">
+      <div class="flex-fill">
+        <span class="h6 mb-3">Kết quả xử lý:</span>
+        <ul>
+          <li>
+            <span class="h6 mb-3">Tổng số dòng thành công: <strong class="font-weight-bold">
+                {{ this.numberOfSuccessItem}}/{{this.selectedItems.length}}
+              </strong> </span>
+          </li>
+          <li>
+            <span class="h6">Tổng số dòng thất bại: <strong class="font-weight-bold"> {{
+                this.errorItems.length}}/{{this.selectedItems.length}}
+              </strong> </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- REPORT -->
+
+  <!-- ERROR LIST -->
+  <div *ngIf="this.errorItems.length !== 0 && this.showViewReportTemplate">
+    <h3 class="font-weight-bold">Danh sách dữ liệu thực thi lỗi:</h3>
+
+    <table class="table m-0 table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Sản phẩm</th>
+          <th>Mô tả</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of this.errorItems; let i = index;">
+          <tr *ngIf="i < this.errorItemsVisibleCount">
+            <td>{{ i + 1}}</td>
+            <td class="cursor-pointer"><strong>ID:{{item?.id}}</strong> -
+              {{item?.name_default}}
+            </td>
+            <td><span class="">{{item?.errorMessage}}</span></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <span class="fw-300 m-3" style="float: right; cursor: pointer;"
+          *ngIf="this.errorItems.length > this.errorItemsVisibleCount" (click)="this.showMoreError()"><i><u><strong>Xem
+            thêm</strong></u></i></span>
+  </div>
+</div>
+<!-- ERROR LIST -->
+
+<div class="modal-footer container border-top">
+  <button class="btn btn-sm btn-secondary" [disabled]="this.waitingToExecute"
+          [style.cursor]="this.waitingToExecute ? 'not-allowed':'pointer'" (click)="onClose()">Quay lại</button>
+  <button *ngIf="!this.showViewReportTemplate" class="btn btn-sm btn-primary" (click)="onConfirmDelete()"
+          [disabled]="this.waitingToExecute" [style.cursor]="this.waitingToExecute ? 'not-allowed':'pointer'">
+    Xóa tất cả
+  </button>
+</div>

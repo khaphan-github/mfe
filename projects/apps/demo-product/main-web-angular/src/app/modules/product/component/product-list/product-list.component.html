@@ -1,0 +1,123 @@
+<ol class="breadcrumb page-breadcrumb">
+  <li class="breadcrumb-item"><a href="javascript:void(0);">Trang chủ</a></li>
+  <li class="breadcrumb-item">Sản phẩm</li>
+  <!-- <li class="breadcrumb-item active">Quản lý</li> -->
+  <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date">Thursday, January 18,
+      2024</span></li>
+</ol>
+
+<div class="subheader">
+  <h1 class="subheader-title">
+    <i class="subheader-icon fal fa-table"></i> Quản lý : <span class="fw-300">sản phẩm</span>
+    <small>
+      Sit amet aliquam id diam maecenas ultricies mi. Egestas dui id ornare arcu odio ut sem nulla pharetra
+    </small>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="panel">
+      <div class="panel-container show">
+        <div class="panel-content">
+          <div class="row mb-3">
+            <!-- Filter -->
+            <div class="col-12 col-md-8 col-xl-5">
+              <app-product-list-filter></app-product-list-filter>
+            </div>
+          </div>
+          <!-- action -->
+          <div class="row mb-3">
+            <!-- left -->
+            <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-start">
+              <button type="button" class="btn btn-primary text-capitalize mr-2" (click)="showCreateProductModal()">
+                <i class="fal fa-user-plus mr-1"></i>
+                Thêm mới
+              </button>
+              <div class="mr-3 ml-2" style="height: 30px; width: 1px; border-right: 1px solid #cdcdcd;"></div>
+              <app-product-other-tool />
+            </div>
+
+            <!-- right -->
+            <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-end">
+              <mat-paginator (page)="handlePageEvent($event)"
+                             [length]="totalRecord$ | async"
+                             [pageIndex]="this.pageIndex"
+                             [pageSize]="this.pageSize"
+                             [hidePageSize]="true"
+                             aria-label="Chọn trang">
+              </mat-paginator>
+              <app-zaa-sort [options]="sortOptions"
+                            [currentOptionsId]="currentSortId"
+                            (choose)="this.onSortChange($event)"
+                            [allowMany]="false"
+                            [enableLanguage]="false">
+              </app-zaa-sort>
+            </div>
+          </div>
+
+          <!-- table -->
+          <div class="row">
+            <div class="col-12">
+              <div class="w-100">
+                <div class="loading-frame-wrap">
+                  @if(this.showLoading) {
+                  <div class="loading-overlay"></div>
+                  }
+                  <table class="table table-hover m-0" *ngIf="productList$ | async as list; ">
+                    <thead class="thead-themed">
+                      <tr>
+                        <th>
+                          <app-check-box [cheched]="this.checkBox.isCheckedAll"
+                                         (checkedChange)="onCheckAllItems($event, list)">
+                          </app-check-box>
+                        </th>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>category</th>
+                        <th>seo</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    @if(list.length !== 0) {
+                    <tbody>
+                      <tr *ngFor="let item of list">
+                        <td>
+                          <app-check-box
+                                         [cheched]="this.checkBox.selectedItems.get(item.id) !== undefined || this.checkBox.isCheckedAll"
+                                         (checkedChange)="checkboxChange($event, item)">
+                          </app-check-box>
+                        </td>
+                        <td (click)="quickViewProduct(item)" class="cursor-pointer">{{item.id}}</td>
+                        <td (click)="quickViewProduct(item)" class="cursor-pointer">{{item.name_default}}</td>
+                        <td (click)="openProductDetail({id:item.id})" class="cursor-pointer">{{item.category | json}}
+                        </td>
+                        <td (click)="openProductDetail({id:item.id})" class="cursor-pointer">{{item.seo | json}}</td>
+                        <td>
+                          <app-bootbox (valueChanged)="this.deleteProductById(item.id)"
+                                       [nameButton]="'<i class=\'fal fa-ban\'></i> ' + ''"
+                                       [classButton]="'btn btn-sm button-action btn-outline-danger waves-effect waves-themed'"
+                                       [title]="'<i class=\'fal fa-times-circle text-danger mr-2\'> Xác nhận xóa dữ liệu</i> ' "
+                                       [message]="'<span><strong>Dữ liệu sau khi được xóa sẽ không được phục hồi! Bạn chắt chắn muốn xóa?</span>'"
+                                       [disabled]="false" />
+                          <button class="btn btn-default btn-sm"
+                                  (click)="this.editProduct(item)">Edit</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                    }
+                  </table>
+                  <div class="mt-2" *ngIf="productList$ | async as list; ">
+                    <app-not-found-data [show]="list.length === 0"></app-not-found-data>
+                  </div>
+                </div>
+                <!-- END Display table -->
+              </div>
+            </div>
+          </div>
+          <!-- datatable end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

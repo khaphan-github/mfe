@@ -1,0 +1,25 @@
+<button [id]="'sort-button-id'"
+        [matMenuTriggerFor]="menuSort"
+        class="btn btn-icon rounded-circle waves-effect waves-themed"
+        aria-haspopup="true"
+        aria-expanded="false">
+  <i class="fal fa-sort-alt"></i>
+</button>
+<mat-menu #menuSort="matMenu">
+  <h6 class="dropdown-header">Sắp xếp theo</h6>
+  @for(option of this.options; track option.id) {
+  <a class="dropdown-item cursor-pointer"
+     *transloco="let translated"
+     [class.active]="isActive(option)"
+     (click)="onChoose(option)">
+    @if(option.icon) {
+    <i [class]="option.icon"></i>
+    }
+    @if(this.enableLanguage) {
+    {{translated(option.displayText)}}
+    } @else {
+    {{option.displayText}}
+    }
+  </a>
+  }
+</mat-menu>

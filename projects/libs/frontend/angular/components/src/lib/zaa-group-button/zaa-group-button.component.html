@@ -1,0 +1,25 @@
+<div class="col mb-2" *transloco="let translated">
+  <label class="form-label d-block">
+    @if(this.enableLanguage) {
+    {{translated(this.label)}}
+    } @else {
+    {{ this.label }}
+    }
+  </label>
+  <div class="btn-group btn-group-toggle">
+    @for(option of this.options; track $index) {
+    <label [class]="this.buttonClass"
+           [class.active]="this.isActive(option)"
+           (click)="this.onChoose(option)">
+      <i [class]="option.icon"></i>
+      <span class="ml-1">
+        @if(this.enableLanguage) {
+        {{translated(option.displayText)}}
+        } @else {
+        {{ option.displayText }}
+        }
+      </span>
+    </label>
+    }
+  </div>
+</div>

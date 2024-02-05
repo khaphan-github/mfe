@@ -1,0 +1,66 @@
+<div class="modal-header container border-bottom">
+  <h4 class="modal-title">
+    <span class="mr-2">Update nhiều dòng dữ liệu</span>
+  </h4>
+  <div class="panel-toolbar">
+  </div>
+</div>
+<div class="modal-body container">
+  @switch (this.currentStep) {
+  <!-- Hiển thị danh sách những ITEM đã chọn -->
+  @case (0) {
+
+  <app-display-selected-item [selectedItems]="this.selectedItems"
+                             [visibleCount]="2">
+  </app-display-selected-item>
+  }
+
+  <!-- Cập nhật thông tin cho từng item và trả ra cái array của dữ liệu với cập  nhật -->
+  @case(1) {
+  <app-processbar-overlay [showProcessBar]="this.waitingToExecute"
+                          [progressValue]="this.successItems.length + this.errorItems.length"
+                          [total]="this.selectedItems.length">
+    <app-update-form [selectedItems]="this.selectedItems"
+                     (result)="this.formUpdateResult = $event"
+                     (invalid)="this.disableNextButton = $event">
+    </app-update-form>
+  </app-processbar-overlay>
+  }
+  <!-- Hiển thị kết quả cập nhật đúng sai error 123 -->
+  @case(2) {
+  <app-update-result [totalRecords]="this.selectedItems"
+                     [successRecords]="this.successItems"
+                     [errorRecords]="this.errorItems">
+  </app-update-result>
+  }
+  }
+
+</div>
+<!-- ERROR LIST -->
+
+<div class="modal-footer container border-top d-flex justify-content-center">
+  <button class="btn btn-secondary"
+          [disabled]="this.waitingToExecute"
+          [style.cursor]="this.waitingToExecute ? 'not-allowed':'pointer'"
+          (click)="onGoBack()">Quay lại</button>
+  @switch (this.currentStep) {
+  @case(0) {
+  @if(this.selectedItems.length !== 0) {
+  <button class="btn btn-primary"
+          (click)="this.currentStep = 1"
+          [disabled]="this.waitingToExecute"
+          [style.cursor]="this.waitingToExecute ? 'not-allowed':'pointer'">
+    Tiếp tục
+  </button>
+  }
+  }
+  @case (1) {
+  <button class="btn btn-primary"
+          [disabled]="this.waitingToExecute || this.disableNextButton"
+          (click)="this.onSubmit()"
+          [style.cursor]="this.waitingToExecute || this.disableNextButton ? 'not-allowed':'pointer'">
+    Lưu
+  </button>
+  }
+  }
+</div>

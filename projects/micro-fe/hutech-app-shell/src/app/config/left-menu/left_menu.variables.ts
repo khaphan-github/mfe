@@ -11,11 +11,11 @@ export const NEW_MENU = [
   // --Region menu of host
   {
     icon: "fal fa-lg fa-fw fa-home",
-    route: "/",
+    route: "/homepage",
     title: "Trang chủ",
     dataFilterTags: "Nội quy lao động",
     dataI18n: "Trang chủ",
-    actionId: '1000'
+    actionId: 20,
   },
 
   // --Region menu of mfe

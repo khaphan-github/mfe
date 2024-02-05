@@ -1,0 +1,194 @@
+<section class="pb-6 overflow-x-hidden">
+  <form class="form" [formGroup]="thongTinChungForm">
+    <div class="d-flex gap-5 mt-4">
+      <!-- #NAVBAR -->
+      <div class="left d-none d-sm-block">
+        <div class="position-fixed">
+          <a class="nav-link" [class.active]="activeTabMenu === this.THONG_TIN_CHUNG_MENU.thongTinCoBanMenu" (click)="scrollTo(this.THONG_TIN_CHUNG_MENU.thongTinCoBanMenu);
+          activeTabMenu = this.THONG_TIN_CHUNG_MENU.thongTinCoBanMenu" role="tab">
+            <div class="fs-md">Thông tin cơ bản</div>
+          </a>
+
+          <a class="nav-link" [class.active]="activeTabMenu ===  this.THONG_TIN_CHUNG_MENU.phanLoaiMenu"
+             (click)="scrollTo(this.THONG_TIN_CHUNG_MENU.phanLoaiMenu); activeTabMenu = this.THONG_TIN_CHUNG_MENU.phanLoaiMenu"
+             role="tab">
+            <div class="fs-md">Phân loại</div>
+          </a>
+          <a class="nav-link" [class.active]="activeTabMenu === this.THONG_TIN_CHUNG_MENU.hienTrangMenu"
+             (click)="scrollTo(this.THONG_TIN_CHUNG_MENU.hienTrangMenu); activeTabMenu = this.THONG_TIN_CHUNG_MENU.hienTrangMenu"
+             role="tab">
+            <div class="fs-md">Hiện trạng</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- #NAVBAR MOBILE -->
+      <div class="d-block d-sm-none">
+        <div class="positon-relative">
+          <div class="position-absolute top-0" style="right: 8%">
+            <button class="btn btn-primary fs-lg mb-2" data-action="toggle" data-class="slide-on-mobile-left-show"
+                    data-target="#js-slide-left">
+              <i class="ni ni-menu"></i>
+              <!-- <i class="ni ni-minify-nav"></i> -->
+            </button>
+          </div>
+        </div>
+        <div id="js-slide-left"
+             class="flex-wrap flex-shrink-0 position-relative slide-on-mobile slide-on-mobile-left pattern-0 p-3">
+          <div class="position-fixed" id="list-example">
+            <a class="nav-link" [class.active]="activeTabMenu ===  this.THONG_TIN_CHUNG_MENU.thongTinCoBanMenu" (click)="
+                scrollTo( this.THONG_TIN_CHUNG_MENU.thongTinCoBanMenu); activeTabMenu =  this.THONG_TIN_CHUNG_MENU.thongTinCoBanMenu
+              " role="tab">
+              <div class="fs-md">Thông tin cơ bản</div>
+            </a>
+            <a class="nav-link" [class.active]="activeTabMenu === this.THONG_TIN_CHUNG_MENU.phanLoaiMenu"
+               (click)="scrollTo(this.THONG_TIN_CHUNG_MENU.phanLoaiMenu); activeTabMenu = this.THONG_TIN_CHUNG_MENU.phanLoaiMenu"
+               role="tab">
+              <div class="fs-md">Phân loại</div>
+            </a>
+            <a class="nav-link" [class.active]="activeTabMenu === this.THONG_TIN_CHUNG_MENU.hienTrangMenu"
+               (click)="scrollTo(this.THONG_TIN_CHUNG_MENU.hienTrangMenu); activeTabMenu = this.THONG_TIN_CHUNG_MENU.hienTrangMenu"
+               role="tab">
+              <div class="fs-md">Hiện trạng</div>
+            </a>
+          </div>
+        </div>
+        <div class="slide-backdrop" data-action="toggle" data-class="slide-on-mobile-left-show"
+             data-target="#js-slide-left"></div>
+      </div>
+
+      <!-- #CONTENT -->
+      <div class="right active scroll_bar_custom">
+        <!-- THÔNG TIN CƠ BẢN -->
+        <div id="thong-tin-co-ban" class="d-flex flex-column gap-10">
+          <div>
+            <strong class="fs-xxl">Thông tin cơ bản</strong>
+
+            <p class="text-black-50">
+              {{ descriptionThongTinCoBan }}
+            </p>
+          </div>
+          <div class="form-group-custom d-flex flex-column flex-lg-row">
+            <div class="form-group mb-2">
+              <div class="form-label">
+                Mã sản phẩm
+                <span class="highlight-required">(*)</span>
+              </div>
+              <input readonly placeholder="Dữ liệu trống" [value]="product_id" class="disabled form-control"
+                     type="text" />
+            </div>
+            <div class="form-group ml-lg-3">
+              <div class="form-label">
+                Tên mặc định
+                <span class="highlight-required">(*)</span>
+              </div>
+              <input readonly [value]="product_name_default" placeholder="Dữ liệu trống" class="disabled form-control"
+                     type="text" />
+            </div>
+          </div>
+          <div formGroupName="info" class="form-group-custom flex-column flex-lg-row">
+            <div>
+              <div class="form-label">Tên để hiển thị khi giao dịch:</div>
+              <input customValidation formControlName="name_display" placeholder="Iphone X..." class="form-control"
+                     type="text" />
+            </div>
+          </div>
+        </div>
+        <!-- PHÂN LOẠI -->
+        <div id="phan-loai" formGroupName="category" class="mt-3">
+          <div>
+            <strong class="fs-xxl">Phân loại</strong>
+            <p class="text-black-50">{{ descriptionPhanLoai }}</p>
+          </div>
+          <ng-container>
+            <div *ngFor="let item of attributes" class="form-group">
+              <div class="form-label">
+                {{ attributesDataSource[item.id].name }} (Tags):
+              </div>
+              <!-- <ng-container>
+                <select2 type="multiple" [formControlName]="item.id" placeholder="Chọn loại sản phẩm..."
+                         [dataSource]="attributesDataSource[item.id]" [maxSelect]="5"></select2>
+              </ng-container> -->
+            </div>
+          </ng-container>
+        </div>
+        <!-- #HIỆN TRẠNG -->
+        <div id="hien-trang" class="d-flex flex-column gap-10 mt-3">
+          <div>
+            <strong class="fs-xxl">Hiện Trạng</strong>
+            <p class="text-black-50">{{ descriptionHienTrang }}</p>
+          </div>
+          <!-- #Trạng thái -->
+          <div class="" style="max-width: 200px">
+            <div class="form-label">Trạng thái</div>
+            <!-- <select2 formControlName="current_status" placeholder="Chọn trạng thái..."
+              [dataSource]="dataSourceStatus_local" [dataClear]="false" />
+          </div> -->
+
+            <!-- #Thời gian công khai-->
+            <div class="d-flex justify-content-between" formGroupName="public_time">
+              <!-- #Toggle trạng thái -->
+              <div class="">
+                <div class="form-label">Thời gian công khai</div>
+                <div class="custom-control custom-switch">
+                  <input (click)="toggle()" type="checkbox" class="custom-control-input" id="toggleButtonPublicTime" />
+                  <label class="custom-control-label" for="toggleButtonPublicTime">
+                    {{ isEditPublicTime ? "Chỉnh sửa" : "Mặc định" }}
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <!-- Ngày -->
+                <div class="mr-1">
+                  <div class="" style="max-width: 200px">
+                    <div class="form-label">Ngày công khai</div>
+                    <!-- <date-picker-single formControlName="ngay" [format]="'L'" [todayHighlight]="true" [clearBtn]="true"
+                                        [todayBtn]="true" [hasIcon]="false"></date-picker-single> -->
+                  </div>
+                </div>
+                <!-- Giờ -->
+                <div class="ml-1 mr-1">
+                  <div class="form-label">Giờ</div>
+                  <input formControlName="gio" style="width: 3.8rem" type="number" min="0" max="24"
+                         class="form-control" />
+                </div>
+                <!-- Phút -->
+                <div class="ml-1">
+                  <div class="form-label">Phút</div>
+                  <input formControlName="phut" style="width: 3.8rem" type="number" min="0" max="59"
+                         class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-danger mr-1"
+                  [disabled]="this.waitingToDelete"
+                  (click)="this.onDelete()">
+            @if(this.waitingToDelete) {
+            <span class="spinner-border spinner-border-sm mr-2"
+                  role="status"
+                  aria-hidden="true">
+            </span>
+            }
+            Xóa sản phẩm
+          </button>
+
+          <button class="btn btn-primary"
+                  [id]="'update-product-info-buttton'"
+                  [disabled]="this.thongTinChungForm.invalid || this.waitingForUpdate"
+                  (click)="this.onUpdate()">
+            @if(this.waitingForUpdate) {
+            <span class="spinner-border spinner-border-sm mr-2"
+                  role="status"
+                  aria-hidden="true">
+            </span>
+            }
+            Lưu thông tin
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

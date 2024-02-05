@@ -35,7 +35,8 @@
         "scripts": [],
         "customWebpackConfig": {
           "path": "projects/micro-fe/hutech-app-shell/webpack.config.js"
-        }
+        },
+        "commonChunk": false
       },
       "configurations": {
         "production": {
@@ -100,16 +101,13 @@
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
-          "namedChunks": true,
-          "customWebpackConfig": {
-            "path": "projects/micro-fe/hutech-app-shell/webpack.prod.config.js"
-          }
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@nx/angular:module-federation-dev-server",
+      "executor": "@nx/angular:dev-server",
       "options": {
         "port": 4200,
         "publicHost": "http://localhost:4200"
@@ -125,9 +123,10 @@
       "defaultConfiguration": "development"
     },
     "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "ngx-build-plus:extract-i18n",
       "options": {
-        "buildTarget": "projects-micro-fe--hutech-app-shell:build"
+        "buildTarget": "projects-micro-fe--hutech-app-shell:build",
+        "extraWebpackConfig": "projects/micro-fe/hutech-app-shell/webpack.config.js"
       }
     },
     "lint": {

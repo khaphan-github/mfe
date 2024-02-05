@@ -1,0 +1,167 @@
+<button
+        class="btn btn-outline-default waves-effect waves-themed"
+        mat-button
+        #menuTrigger="matMenuTrigger"
+        [matMenuTriggerFor]="belowMenu">
+  <i class="fal fa-filter mr-1"></i>
+  Bộ lọc
+</button>
+
+<mat-menu
+          panelClass="filter-material-menu"
+          #belowMenu="matMenu"
+          yPosition="below"
+          (closed)="onCloseMenu()">
+
+  <!-- Use  $event.stopPropagation() to keep menu show when click -->
+  <div class="col-md-12 m-2 filter-material-menu"
+       (click)="$event.stopPropagation()">
+
+    <!-- BEGIN SELECT 2 CATEGORY -->
+    <div class="row ml-1">
+      <div class="col-md-12 mt-3">
+        <h6 class="fw-500 fs-lg mt-2">Danh mục:</h6>
+      </div>
+
+      <div class="col-md-5 mr-3">
+        <!-- BEGIN SELECT2 CHỌN DANH MỤC ĐỒ GIA DỤNG -->
+        <lib-ng-select2 resettable
+                        overlay="true"
+                        [disabled]="this.doGiaDungSelect2Loading"
+                        [placeholder]="
+                this.doGiaDungSelect2Loading
+                ? 'Đang tải dữ liệu...'
+                : 'Chọn danh mục đồ gia dụng...'"
+                        [noResultMessage]="
+                this.doGiaDungSelect2NotFoundResult
+                ? 'Không tìm thấy dữ liệu'
+                : ''"
+                        displaySearchStatus="always"
+                        [data]="this.doGiaDungSelect2Data"
+                        (update)="this.onUpdateSelectionDoGiaDung($event)"
+                        [value]="this.doGiaDungSelect2Option?.value ?? null">
+          <select2-label>Đồ gia dụng:</select2-label>
+        </lib-ng-select2>
+        <!-- END SELECT2 CHỌN DANH MỤC ĐỒ GIA DỤNG -->
+      </div>
+
+      <div class="col-md-5">
+        <!-- BEGIN SELECT2 CHỌN DANH MỤC CON ĐỒ GIA DỤNG -->
+        <lib-ng-select2 resettable
+                        overlay="true"
+                        [disabled]="
+                this.doGiaDungChildSelect2Loading
+                || this.doGiaDungSelect2Loading
+                || this.doGiaDungChildSelect2Data.length === 0"
+                        [placeholder]="
+            this.doGiaDungChildSelect2Loading || this.doGiaDungSelect2Loading
+              ? 'Đang tải dữ liệu...'
+              : this.doGiaDungChildSelect2Data.length === 0
+                  ? 'Không tìm thấy danh mục con'
+                  : 'Chọn danh mục con...' "
+                        [noResultMessage]="
+              this.doGiaDungChildSelect2Data.length === 0
+              ? 'Không tìm thấy danh mục con'
+              : ''"
+                        [data]="this.doGiaDungChildSelect2Data"
+                        (update)="this.onUpdateSelectionDoGiaDungChild($event)"
+                        [value]="this.doGiaDungChildSelect2Option?.value ?? null">
+          <select2-label>Đồ gia dụng con:</select2-label>
+        </lib-ng-select2>
+        <!-- END SELECT2 CHỌN DANH MỤC CON ĐỒ GIA DỤNG -->
+      </div>
+    </div>
+    <!--END SELECT 2 CATEGORY -->
+
+    <!-- BEGIN Filter by category -->
+    <div class="col-md-11 ml-2">
+      <h6 class="fw-500 fs-lg mt-3">Danh mục sản phẩm dien tu:</h6>
+      <div class="row"
+           *ngIf="this.doDienTuCheckBox.length !== 0">
+        <div class="col-md-3 mt-2" *ngFor="let item of this.doDienTuCheckBox;
+           trackBy: trackByDoDienTuModelFn">
+          <app-check-box [label]="item.name" [cheched]="item.selected"
+                         (checkedChange)="this.onCheckBoxByDoDienTuChanged($event, item)" />
+        </div>
+      </div>
+
+      <ng-container
+                    *ngIf="this.doDienTuCheckBox.length === 0 && !this.doDienTuCheckLoading">
+        Không tìm thấy dữ liệu danh mục sản phẩm điện tử
+      </ng-container>
+
+      <ng-container *ngIf="this.doDienTuCheckLoading">
+        Đang tải dữ liệu...
+      </ng-container>
+    </div>
+
+
+    <!-- BEGIN - Filter by price range -->
+    <div class="mt-3 ml-2 mt-2">
+      <div class="col-md-6">
+        <h6 class="fw-500 fs-lg">Giá nằm trong khoản (Đồng):</h6>
+      </div>
+      <div class="col-md-11 ml-2">
+        <div class="row">
+          <input
+                 class="form-control col-md-5 mt-0" type="number"
+                 (change)="this.onPriceFromChange($event)"
+                 [value]="this.priceFrom"
+                 [min]="this.PRICE_RANGE_DEFAULT.MIN"
+                 [max]="this.priceTo">
+          <div class="col-md-1 d-flex align-items-center justify-content-center">
+            <span>Đến</span>
+          </div>
+          <input
+                 class="form-control col-md-5 mt-0" type="number"
+                 (change)="this.onPriceToChange($event) "
+                 [value]="this.priceTo "
+                 [min]="this.priceFrom"
+                 [max]="this.PRICE_RANGE_DEFAULT.MAX">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6 class="fw-500 fs-lg mt-2">Trạng thái:</h6>
+      </div>
+      <app-zaa-group-button [options]="groupButtonOptions"
+                            [currentSelected]="this.currentSelectedOptions"
+                            [buttonClass]="'btn btn-default waves-effect waves-themed'"
+                            [allowMany]="false"
+                            [enableLanguage]="false"
+                            (choose)="this.onSatusChange($event)">
+      </app-zaa-group-button>
+    </div>
+    <!-- END - Filter by price range -->
+
+    <!-- BEGIN Action button -->
+    <div class="col-md-12 mt-3">
+      <div class="row mb-4">
+        <div class="col-auto pr-0">
+          <button type="button"
+                  class="w-100 btn btn-default"
+                  mat-button
+                  (click)="menuTrigger.closeMenu()">
+            <span>Thoát</span>
+          </button>
+        </div>
+        <div class="col-auto">
+          <button type="button"
+                  class="w-100 btn btn-secondary"
+                  (click)="onEmptyAllSelection()">
+            <span>Bỏ chọn tất
+              cả</span>
+          </button>
+        </div>
+        <div class="col">
+          <button type="button"
+                  class="w-100 btn btn-primary"
+                  mat-button
+                  (click)="onFilter(); menuTrigger.closeMenu()">
+            <span>Xem kết quả</span>
+          </button>
+        </div>
+      </div>
+      <!-- END Action button -->
+    </div>
+  </div>
+</mat-menu>

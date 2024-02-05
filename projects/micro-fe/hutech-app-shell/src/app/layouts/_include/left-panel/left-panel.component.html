@@ -1,8 +1,9 @@
 <aside class="page-sidebar">
   <div class="page-logo">
     <div class="page-logo-link press-scale-down d-flex align-items-center position-relative">
-      <img src="assets/img/logo.png" alt="HUTECH ERP SYSTEM" aria-roledescription="logo" />
-      <span class="page-logo-text mr-1">HUTECH ERP SYSTEM</span>
+      <img src="https://static-00.iconduck.com/assets.00/file-type-angular-icon-1907x2048-tobdkjt1.png"
+           alt="HUTECH ERP SYSTEM" aria-roledescription="logo" />
+      <span class="page-logo-text mr-1">ANGULAR ERP MFE</span>
       <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
     </div>
   </div>
@@ -18,14 +19,17 @@
               active: menuItem.active === true
             }">
               <a class="waves-effect waves-themed"
-                    [routerLink]="menuItem.children ? null : menuItem.route"
-                    [attr.title]="menuItem.title"
-                    [attr.data-filter-tags]="menuItem.dataFilterTags">
+                 [routerLink]="menuItem.children ? null : menuItem.route"
+                 [attr.title]="menuItem.title"
+                 [attr.data-filter-tags]="menuItem.dataFilterTags">
                 <i *ngIf="isRoot" class="{{ menuItem.icon }}"></i>
+                {{ menuItem.title }}
                 <span class="nav-link-text">
                   <span class="nav-link-text mr-2"></span>
-                  <span class="nav-link-text" style="line-height: normal;" *ngIf="menuItem.highligthMenu"
-                        [class]="menuItem.highligthMenu.css"></span>
+                  <span class="nav-link-text" style="line-height: normal;"
+                        *ngIf="menuItem.highligthMenu"
+                        [class]="menuItem.highligthMenu.css">
+                  </span>
                 </span>
               </a>
               <ul *ngIf="menuItem.children">
@@ -45,6 +49,7 @@
               <a [href]="menuItem.children ? '#' : getUrl(menuItem.route)" [attr.title]="menuItem.title"
                  class="waves-effect waves-themed" [attr.data-filter-tags]="menuItem.dataFilterTags">
                 <i *ngIf="isRoot" class="{{ menuItem.icon }}"></i>
+                {{ menuItem.title }}
                 <span class="nav-link-text">
                   <span class="nav-link-text mr-2"></span>
                   <span class="nav-link-text" style="line-height: normal;" *ngIf="menuItem.highligthMenu"
@@ -84,7 +89,7 @@
     </a>
     <ul class="list-table m-auto nav-footer-buttons">
       <li>
-        <span style="color: var(--theme-primary);">HUTECH © 2012 - 2023 </span>
+        <span style="color: var(--theme-primary);">2012 - 2023 </span>
       </li>
 
     </ul>

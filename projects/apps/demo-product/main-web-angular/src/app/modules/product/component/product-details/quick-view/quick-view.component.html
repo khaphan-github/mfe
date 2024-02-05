@@ -1,0 +1,40 @@
+
+  <div class="modal-header container border-bottom">
+    <h4 class="modal-title">
+      <button type="button" class="btn btn-sm  btn-outline-primary btn-icon waves-effect waves-themed"
+        data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true"><i class="fal fa-arrow-left"></i></span>
+      </button>
+      <span> Hi there!</span>
+    </h4>
+
+  </div>
+  <div class="modal-body container">
+    <p>Hello, {{ this.productInput | json }}!</p>
+    <p>
+      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus
+      ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur
+      ac, vestibulum at eros.
+    </p>
+
+  </div>
+  <div class="modal-footer container border-top">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.update({ size: 'xl' })">
+      Update size
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.update({ centered: true })">
+      Update centered
+    </button>
+    <button type="button" class="btn btn-outline-dark"
+      (click)="activeModal.update({ backdropClass: 'light-blue-backdrop' })">
+      Update backdropClass
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)="clickFullScreen()">
+      Update fullscreen
+    </button>
+
+    <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')"> -->
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()">
+      Close
+    </button>
+  </div>

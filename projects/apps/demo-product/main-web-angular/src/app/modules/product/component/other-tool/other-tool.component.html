@@ -1,0 +1,24 @@
+<div class="btn-group">
+  <button class="btn btn-outline-default dropdown-toggle waves-effect waves-themed" type="button"
+          [matMenuTriggerFor]="menuOtherTool">
+    Tác vụ khác
+  </button>
+  <mat-menu #menuOtherTool="matMenu">
+    <!-- <div class="dropdown-menu"> -->
+    <a class="dropdown-item cursor-pointer"
+       (click)="onAction(this.ACTIONS.DELETE)">
+      Xóa theo chọn
+    </a>
+    <a class="dropdown-item cursor-pointer"
+       (click)="onAction(this.ACTIONS.UPDATE_MANY_FORM)">
+      Update many
+    </a>
+    <a class="dropdown-item cursor-pointer"
+       (click)="onAction(this.ACTIONS.EXPORT_EXCEL)">
+      Export
+    </a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item cursor-pointer" href="#">Separated link</a>
+    <!-- </div> -->
+  </mat-menu>
+</div>
