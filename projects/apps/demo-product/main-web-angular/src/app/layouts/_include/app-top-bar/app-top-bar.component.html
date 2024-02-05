@@ -1,0 +1,17 @@
+<a [routerLink]="['/']">
+  <h1>My Store</h1>
+</a>
+
+<ul>
+  <li class="ts"><a routerLink="/">Dashboard</a> </li>
+  <li class="ts"><a [routerLink]="['/products']">Product</a> </li>
+  <li class="ts"><a [routerLink]="['/account']">Account</a> </li>
+</ul>
+
+<a class="button fancy-button" [routerLink]="['cart']"><em class="material-icons">shopping_cart</em>Checkout</a>
+
+<!--
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->

@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, OnDestroy, inject } from "@angular/core";
-import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   AppCheckBoxComponent,
@@ -11,7 +10,9 @@ import {
   BootBoxComponent,
   ComponentCheckBoxHelper,
   ToastrModule,
-  ToastrService
+  ToastrService,
+  MatPaginatorModule,
+  PageEvent
 } from "@erp/angular/components";
 import { Subject, Observable, takeUntil, filter } from "rxjs";
 import { Product } from "../../model/product.model";
@@ -24,6 +25,7 @@ import { QuickViewComponent } from "../product-details/quick-view/quick-view.com
 import { TaoSanPhamComponent } from "../tao-san-pham/tao-san-pham.component";
 import Swal from "sweetalert2";
 import { TranslocoModule } from "@ngneat/transloco";
+import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   standalone: true,

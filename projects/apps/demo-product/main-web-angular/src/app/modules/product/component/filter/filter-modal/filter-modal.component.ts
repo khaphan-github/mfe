@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { MatMenuModule } from "@angular/material/menu";
 import { Subject, BehaviorSubject, map, catchError, throwError, combineLatest, takeUntil, tap, debounceTime, switchMap, of } from "rxjs";
 import { CATEGORIES } from "../consts/category.const";
 import { FilterModalService } from "./filter-modal.service";
@@ -9,6 +8,7 @@ import { PRICE_RANGE } from "../items-sticky/items-sticky.model";
 import { NgSelect2Module, AppCheckBoxComponent, ZaaGroupButtonComponent, Select2Data, Select2Option, ICheckbox, IGroupButton } from "@erp/angular/components";
 import { IModalFilterSharedState } from "../../../shared-state/fitler-modal-shared.state";
 import * as _ from "lodash";
+import { MatMenuModule } from "@angular/material/menu";
 
 
 @Component({

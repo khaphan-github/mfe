@@ -1,21 +1,40 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { TranslocoRootModule } from '@erp/angular/components';
+import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { DefaultNoComponentGlobalConfig, GLOBAL_CONFIG_PAGE_SIZE, MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginatorDefaultOptions, SmartAdminConfigService, TOAST_CONFIG, ToastrModule, ToastrService, TranslocoRootModule } from '@erp/angular/components';
 import { ProductModule } from './modules/product/product.module';
+
 
 @Component({
   standalone: true,
-  imports: [
-    NxWelcomeComponent,
-    TranslocoRootModule,
-    ProductModule,
-    RouterModule,
-  ],
   selector: 'erp-root',
+  imports: [
+    RouterOutlet,
+    ProductModule,
+    TranslocoRootModule,
+    ToastrModule,
+  ],
+  providers: [
+    SmartAdminConfigService,
+    ToastrService,
+    {
+      provide: MAT_PAGINATOR_DEFAULT_OPTIONS,
+      useValue: GLOBAL_CONFIG_PAGE_SIZE as MatPaginatorDefaultOptions
+    },
+    {
+      provide: TOAST_CONFIG,
+      useValue: {
+        default: DefaultNoComponentGlobalConfig,
+        config: {}
+      }
+    }
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'projects-apps-demo-product-main-web-angular';
+
+export class AppComponent implements AfterViewInit {
+  smartAdminConfigService: SmartAdminConfigService = inject(SmartAdminConfigService);
+
+  ngAfterViewInit(): void {
+    this.smartAdminConfigService.activeJsAppComponent();
+  }
 }

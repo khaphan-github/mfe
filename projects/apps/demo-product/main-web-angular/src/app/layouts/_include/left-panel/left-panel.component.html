@@ -1,0 +1,99 @@
+<aside class="page-sidebar">
+  <div class="page-logo">
+    <div class="page-logo-link press-scale-down d-flex align-items-center position-relative">
+      <img src="https://cdn-icons-png.flaticon.com/512/458/458910.png"
+           alt="HUTECH ERP SYSTEM" aria-roledescription="logo" />
+      <span class="page-logo-text mr-1">ANGULAR ERP MFE</span>
+      <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
+    </div>
+  </div>
+
+  <!-- BEGIN PRIMARY NAVIGATION -->
+  <nav id="js-primary-nav" class="primary-nav flex-1" role="navigation">
+    <ul id="js-nav-menu" class="nav-menu">
+      <ng-template #recursiveMenu let-menuItems="menuItems" let-isRoot="isRoot">
+        <ng-container *ngFor="let menuItem of menuItems">
+          <ng-container *ngIf="checkIsLocalAction(menuItem)">
+            <li *ngIf="checkActionMenu(menuItem.actionId)" routerLinkActive="active" [ngClass]="{
+              open: menuItem.open === true,
+              active: menuItem.active === true
+            }">
+              <a class="waves-effect waves-themed"
+                 [routerLink]="menuItem.children ? null : menuItem.route"
+                 [attr.title]="menuItem.title"
+                 [attr.data-filter-tags]="menuItem.dataFilterTags">
+                <i *ngIf="isRoot" class="{{ menuItem.icon }}"></i>
+                {{ menuItem.title }}
+                <span class="nav-link-text">
+                  <span class="nav-link-text mr-2"></span>
+                  <span class="nav-link-text" style="line-height: normal;"
+                        *ngIf="menuItem.highligthMenu"
+                        [class]="menuItem.highligthMenu.css">
+                  </span>
+                </span>
+              </a>
+              <ul *ngIf="menuItem.children">
+                <ng-container *ngTemplateOutlet="
+                  recursiveMenu;
+                  context: { menuItems: menuItem.children, isRoot: false }
+                "></ng-container>
+              </ul>
+            </li>
+          </ng-container>
+          <ng-container *ngIf="!checkIsLocalAction(menuItem)">
+            <li *ngIf="checkActionMenu(menuItem.actionId)"
+                [routerLinkActive]="'active'" [ngClass]="{
+                open: menuItem.open === true,
+                active: menuItem.active === true
+              }">
+              <a [href]="menuItem.children ? '#' : getUrl(menuItem.route)" [attr.title]="menuItem.title"
+                 class="waves-effect waves-themed" [attr.data-filter-tags]="menuItem.dataFilterTags">
+                <i *ngIf="isRoot" class="{{ menuItem.icon }}"></i>
+                {{ menuItem.title }}
+                <span class="nav-link-text">
+                  <span class="nav-link-text mr-2"></span>
+                  <span class="nav-link-text" style="line-height: normal;" *ngIf="menuItem.highligthMenu"
+                        [class]="menuItem.highligthMenu.css"></span>
+                </span>
+              </a>
+              <ul *ngIf="menuItem.children">
+                <ng-container *ngTemplateOutlet="
+                    recursiveMenu;
+                    context: { menuItems: menuItem.children, isRoot: false }
+                  "></ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ng-template>
+
+      <ng-container *ngTemplateOutlet="
+          recursiveMenu;
+          context: { menuItems: menuData, isRoot: true }
+        "></ng-container>
+    </ul>
+
+    <!-- {{> include/_nav-filter-msg }} -->
+    <div class="filter-message js-filter-message bg-success-600"></div>
+  </nav>
+  <!-- END PRIMARY NAVIGATION -->
+
+
+  <div class="nav-footer shadow-top">
+    <a onclick="return false;"
+       data-action="toggle"
+       data-class="nav-function-minify"
+       class="hidden-md-down">
+      <i class="ni ni-chevron-right"></i>
+      <i class="ni ni-chevron-right"></i>
+    </a>
+    <ul class="list-table m-auto nav-footer-buttons">
+      <li>
+        <span style="color: var(--theme-primary);">2012 - 2023 </span>
+      </li>
+
+    </ul>
+  </div>
+</aside>
+<!-- this overlay is activated only when mobile menu is triggered -->
+<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->

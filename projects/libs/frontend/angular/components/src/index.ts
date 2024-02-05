@@ -19,3 +19,4 @@ export * from './lib/zaa-processbar-overlay/processbar-overlay.component';
 //#endregion
 
 export * from './lib/ui.const';
+export * from './lib/smart-admin-config.service'

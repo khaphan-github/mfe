@@ -30,7 +30,7 @@
           }
         ],
         "styles": [
-          "projects/apps/demo-product/main-web-angular/src/styles.scss"
+          "projects/apps/demo-product/main-web-angular/src/custom-theme.scss"
         ],
         "scripts": [],
         "customWebpackConfig": {
