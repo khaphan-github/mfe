@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { ProductRoutingModule } from './product.routing.module';
 import { ProductComponent } from './product.component';
@@ -36,5 +35,6 @@ import { ToastrModule, ToastrService, TranslocoRootModule } from '@erp/angular/c
     OverlayModule,
     ProductListComponent,
   ],
+  exports: [ProductComponent, ProductListComponent]
 })
 export class ProductModule { }
