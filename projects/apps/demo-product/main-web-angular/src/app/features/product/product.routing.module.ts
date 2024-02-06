@@ -67,10 +67,7 @@ const productRoutes: Routes = [
         path: '',
         component: ProductListComponent,
       },
-      {
-        path: 'category',
-        component: ListComponent,
-      },
+
       {
         title: 'Xem chi tiết sản phẩm theo mã',
         path: ModalRouting.productDetail.root + '/:id',

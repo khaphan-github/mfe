@@ -2,8 +2,8 @@
 import { AfterViewInit, Component, OnInit, isDevMode } from '@angular/core';
 import { Location } from '@angular/common';
 import { NEW_MENU } from '../../../config/left-menu/left_menu.variables';
-import { SmartAdminConfigService } from '../../../smart-admin-config.service';
 import * as _ from 'lodash';
+import { SmartAdminConfigService } from '@erp/angular/components';
 /**
  * Cấu trúc của 1 menu trong left menu
  * @param icon: chứa tên class icon. Ví dụ: fa fa-edit

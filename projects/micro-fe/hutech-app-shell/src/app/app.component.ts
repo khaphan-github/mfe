@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, VERSION, inject, isDevMode } from '@angular/core';
-import { SmartAdminConfigService } from './smart-admin-config.service';
 import { RouterOutlet } from '@angular/router';
+import { SmartAdminConfigService } from '@erp/angular/components';
 
 @Component({
   standalone: true,
@@ -15,7 +15,7 @@ import { RouterOutlet } from '@angular/router';
 })
 
 export class AppComponent implements OnInit, AfterViewInit {
-  private readonly smartAdminConfigService = inject(SmartAdminConfigService);
+  smartAdminConfigService = inject(SmartAdminConfigService);
 
   ngOnInit() {
     if (isDevMode()) {

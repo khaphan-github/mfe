@@ -3,7 +3,7 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 module.exports = withModuleFederationPlugin({
   name: 'projects-apps-demo-product-main-web-angular',
   exposes: {
-    './Component': './projects/apps/demo-product/main-web-angular/src/app/modules/product/product.module.ts',
+    "./routes": "./projects/apps/demo-product/main-web-angular/src/app/configs/mfe.routes.ts",
   },
 
   shared: {

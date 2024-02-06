@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MemLayoutComponent } from './mem-layout.component';
-import {  memLayoutRoutes } from '../../config/mem-layout.routes';
+import {  memLayoutRoutes } from '../../mem-layout.routes';
 import { TopBarComponent } from '../_include/app-top-bar/app-top-bar.component';
 import { LeftPanelComponent } from '../_include/left-panel/left-panel.component';
 import { PageHeaderComponent } from '../_include/page-header/page-header.component';

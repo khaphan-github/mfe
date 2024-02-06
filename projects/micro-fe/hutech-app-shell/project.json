@@ -30,7 +30,8 @@
           }
         ],
         "styles": [
-          "projects/micro-fe/hutech-app-shell/src/styles.scss"
+          "projects/libs/frontend/angular/assets/css/custom/styles.css",
+          "projects/libs/frontend/angular/assets/scss/custom-theme.scss"
         ],
         "scripts": [],
         "customWebpackConfig": {

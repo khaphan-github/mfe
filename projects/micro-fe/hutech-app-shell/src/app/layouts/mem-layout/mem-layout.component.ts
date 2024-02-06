@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { SmartAdminConfigService } from '../../smart-admin-config.service';
+import { SmartAdminConfigService } from '@erp/angular/components';
 
 @Component({
   selector: 'erp-mem-layout',
