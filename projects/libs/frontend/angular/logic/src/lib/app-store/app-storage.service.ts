@@ -25,6 +25,7 @@ export class AppStorageService {
 
   ) { }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public setItem(key: string, value: any, options: Options) {
     switch (options.location) {
       case StorageLocation.LOCAL_STORAGE:
@@ -41,6 +42,7 @@ export class AppStorageService {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getItem<T>(key: string, options: Options): T | any {
     switch (options.location) {
       case StorageLocation.LOCAL_STORAGE:

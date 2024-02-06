@@ -16,6 +16,7 @@ export * from './lib/lib-material/public-api';
 export * from './lib/app-not-found-data/app-not-found-data.component';
 export * from './lib/zaa-bootbox/bootbox.component';
 export * from './lib/zaa-processbar-overlay/processbar-overlay.component';
+export * from './lib/zaa-share-provider/zaa-share-provider.module';
 //#endregion
 
 export * from './lib/ui.const';

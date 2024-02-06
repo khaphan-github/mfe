@@ -1,5 +1,5 @@
 {
-  "name": "logic",
+  "name": "projects-libs-frontend-angular-logic",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "projects/libs/frontend/angular/logic/src",
   "prefix": "erp",

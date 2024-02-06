@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@erp/angular/logic": [
-        "projects/libs/frontend/angular/logic/src/index.ts"
-      ],
       "@erp/angular/components": [
         "projects/libs/frontend/angular/components/src/index.ts"
+      ],
+      "@erp/angular/logic": [
+        "projects/libs/frontend/angular/logic/src/index.ts"
       ]
     }
   },

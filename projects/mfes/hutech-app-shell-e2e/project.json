@@ -1,0 +1,30 @@
+{
+  "name": "projects-mfes--hutech-app-shell-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "projects/micro-fe/hutech-app-shell-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "projects/micro-fe/hutech-app-shell-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "projects-mfes--hutech-app-shell:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "projects-mfes--hutech-app-shell:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "projects-mfes--hutech-app-shell:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["projects-mfes--hutech-app-shell"]
+}

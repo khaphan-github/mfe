@@ -1,0 +1,156 @@
+{
+  "name": "projects-mfes--hutech-app-shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "erp",
+  "sourceRoot": "projects/mfes/hutech-app-shell/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/projects/mfes/hutech-alpp-shell",
+        "index": "projects/mfes/hutech-app-shell/src/index.html",
+        "main": "projects/mfes/hutech-app-shell/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "projects/mfes/hutech-app-shell/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "projects/mfes/hutech-app-shell/src/favicon.ico",
+          "projects/mfes/hutech-app-shell/src/assets",
+          {
+            "glob": "**/*",
+            "input": "projects/libs/frontend/angular/assets/",
+            "output": "./assets"
+          }
+        ],
+        "styles": [
+          "projects/libs/frontend/angular/assets/css/custom/styles.css",
+          "projects/libs/frontend/angular/assets/scss/custom-theme.scss"
+        ],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "projects/mfes/hutech-app-shell/webpack.config.js"
+        },
+        "commonChunk": false
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "projects/mfes/hutech-app-shell/src/app/config/environments/environment.ts",
+              "with": "projects/mfes/hutech-app-shell/src/app/config/environments/environment.prod.ts"
+            },
+            {
+              "replace": "projects/mfes/hutech-app-shell/src/app/config/policy/policy.config.ts",
+              "with": "projects/mfes/hutech-app-shell/src/app/config/policy/policy.config.prod.ts"
+            }
+          ],
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "projects/mfes/hutech-app-shell/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "fileReplacements": [
+            {
+              "replace": "projects/mfes/hutech-app-shell/src/app/config/environments/environment.ts",
+              "with": "projects/mfes/hutech-app-shell/src/app/config/environments/environment.dev.ts"
+            },
+            {
+              "replace": "projects/mfes/hutech-app-shell/src/app/config/policy/policy.config.ts",
+              "with": "projects/mfes/hutech-app-shell/src/app/config/policy/policy.config.dev.ts"
+            }
+          ],
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "test": {
+          "fileReplacements": [
+            {
+              "replace": "projects/mfes/hutech-app-shell/src/app/config/environments/environment.ts",
+              "with": "projects/mfes/hutech-app-shell/src/app/config/environments/environment.test.ts"
+            },
+            {
+              "replace": "projects/mfes/hutech-app-shell/src/app/config/policy/policy.config.ts",
+              "with": "projects/mfes/hutech-app-shell/src/app/config/policy/policy.config.test.ts"
+            }
+          ],
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "options": {
+        "port": 4200,
+        "publicHost": "http://localhost:4200"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "projects-mfes--hutech-app-shell:build:production"
+        },
+        "development": {
+          "buildTarget": "projects-mfes--hutech-app-shell:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "ngx-build-plus:extract-i18n",
+      "options": {
+        "buildTarget": "projects-mfes--hutech-app-shell:build",
+        "extraWebpackConfig": "projects/mfes/hutech-app-shell/webpack.config.js"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "projects/mfes/hutech-app-shell/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "projects-mfes--hutech-app-shell:build",
+        "port": 4200
+      }
+    }
+  }
+}

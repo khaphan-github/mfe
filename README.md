@@ -43,7 +43,7 @@ export const environment = {
 Đối với host MFE thì chỉ cần thay `--type=host`:
 
 ```bash
-npm install @angular-architects/module-federation && npx nx g @angular-architects/module-federation:ng-add --project=projects-micro-fe--hutech-app-shell --type=host  --port=4200
+npm install @angular-architects/module-federation && npx nx g @angular-architects/module-federation:ng-add --project=projects-mfes--hutech-app-shell --type=host  --port=4200
 ```
 
 Thêm share asset file
