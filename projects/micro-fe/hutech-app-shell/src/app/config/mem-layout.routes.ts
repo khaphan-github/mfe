@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { MemLayoutComponent } from '../layouts/mem-layout/mem-layout.component';
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { environment } from './environments/environment';
-const loadRemote = async (envRemote: string) => {
+
+const loadRemote = async (envRemote: string, moduleName: string) => {
   try {
     const m = await loadRemoteModule({
       type: 'module',
@@ -10,7 +11,7 @@ const loadRemote = async (envRemote: string) => {
       remoteEntry: envRemote + '/remoteEntry.js',
     });
     console.log(m);
-    return m.AppComponent;
+    return m[moduleName];
   } catch (err) {
     console.error(`Error when load remote ${envRemote}, ${err}`);
     return null;
@@ -23,11 +24,12 @@ export const memLayoutRoutes: Routes = [
     children: [
       {
         path: 'nqld',
-        loadComponent: () => loadRemote(environment.microFeRemoteEntry.noiQuyLaoDong),
+        loadComponent: () => loadRemote(environment.microFeRemoteEntry.noiQuyLaoDong, ''),
       },
       {
+        // Khi chuyển route trên app shell đến route này thì mfe product sẽ được load.
         path: 'product',
-        loadComponent: () => loadRemote(environment.microFeRemoteEntry.demoProduct),
+        loadChildren: () => loadRemote(environment.microFeRemoteEntry.demoProduct, 'ProductModule'),
       }
       // Add other remote entry;
     ]

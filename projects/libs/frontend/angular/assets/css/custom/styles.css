@@ -1,0 +1,44 @@
+/*Import loading*/
+@import url('../../css/my-overlay-loading.css');
+
+
+a:hover>* {
+  cursor: pointer !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+}
+
+
+/*icon font size*/
+.icon-size-100 {
+  font-size: 100%;
+}
+
+.icon-size-120 {
+  font-size: 120%;
+}
+
+.icon-size-140 {
+  font-size: 140%;
+}
+
+/* Overide css  */
+/* Hieu ung bi dut khi mo modal */
+body:not(.mod-main-boxed):not(.mobile-view-activated).chrome.modal-open {
+  padding-right: 0px !important;
+}
+
+/* Custom size logo */
+
+.page-logo img {
+  width: 64px;
+  height: 55px;
+}

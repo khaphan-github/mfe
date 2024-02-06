@@ -9,10 +9,9 @@ import {
   NotFoundDataComponent,
   BootBoxComponent,
   ComponentCheckBoxHelper,
-  ToastrModule,
-  ToastrService,
   MatPaginatorModule,
-  PageEvent
+  PageEvent,
+  ToastrService
 } from "@erp/angular/components";
 import { Subject, Observable, takeUntil, filter } from "rxjs";
 import { Product } from "../../model/product.model";
@@ -25,7 +24,6 @@ import { QuickViewComponent } from "../product-details/quick-view/quick-view.com
 import { TaoSanPhamComponent } from "../tao-san-pham/tao-san-pham.component";
 import Swal from "sweetalert2";
 import { TranslocoModule } from "@ngneat/transloco";
-import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   standalone: true,
@@ -39,11 +37,9 @@ import { HttpClientModule } from "@angular/common/http";
     NotFoundDataComponent,
     BootBoxComponent,
     ZaaSortComponent,
-    ToastrModule,
     TranslocoModule,
   ],
-  providers: [
-  ],
+  providers: [],
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
 })
@@ -256,5 +252,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
     });
 
     editModal.componentInstance.item = item;
+  }
+  navigateToCategory() {
+    this.router.navigate(['product/category']);
   }
 }

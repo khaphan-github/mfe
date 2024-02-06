@@ -20,7 +20,7 @@ export class TaoSanPhamComponent {
   router = inject(Router);
   productService = inject(ProductService);
   activeModal = inject(NgbActiveModal);
-  toast = inject(ToastrService);
+  // toast = inject(ToastrService);
 
   isSaving: boolean = false;
   displayErrorMessage: string = '';
@@ -51,7 +51,7 @@ export class TaoSanPhamComponent {
     this.productService.createProduct(product).subscribe({
       // handle success
       next: (response) => {
-        this.toast.success(`Cập nhật thông tin thành công`);
+        // this.toast.success(`Cập nhật thông tin thành công`);
         this.isSaving = false;
         this.productService.SetProductIsChanged(true);
         if (navigateTo == 'list') {

@@ -11,7 +11,7 @@ export const NEW_MENU = [
   // --Region menu of host
   {
     icon: "fal fa-lg fa-fw fa-home",
-    route: "/homepage",
+    route: "/test",
     title: "Trang chủ",
     dataFilterTags: "Nội quy lao động",
     dataI18n: "Trang chủ",

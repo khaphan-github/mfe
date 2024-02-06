@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
 import { ProductComponent } from './product.component';
 import { ProductListComponent } from './component/product-list/product-list.component';
+import { ListComponent } from '../category/list/list.component';
 
 // Nơi khai báo các đường dẫn liên quan đến các chuyển hướng đến modal theo kiểu routing
 export const ModalRouting = {
@@ -65,6 +66,10 @@ const productRoutes: Routes = [
         title: 'Dánh sách sản phẩm',
         path: '',
         component: ProductListComponent,
+      },
+      {
+        path: 'category',
+        component: ListComponent,
       },
       {
         title: 'Xem chi tiết sản phẩm theo mã',
