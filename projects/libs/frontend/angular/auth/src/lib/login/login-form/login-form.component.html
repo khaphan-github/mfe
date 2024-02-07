@@ -1,0 +1,132 @@
+<div class="card p-4 rounded-plus bg-faded" *transloco="let translated">
+  <form class="form-group"
+        [formGroup]="this.loginForm">
+
+    <!-- #Message Alert Error -->
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessageTranslated">
+      <strong> {{ translated(this.errorMessageTranslated) }} </strong>
+      @if(this.currentErrorCode === AUTH_ERROR_CODE.ACCOUNT_INACTIVE) {
+      <u (click)="navigateToActiveAccountPage()" style="cursor: pointer;">
+        <i>
+          <b>
+            <br>
+            Gửi lại tôi đường dẫn kích hoạt tài khoản
+          </b>
+        </i>
+      </u>
+      }
+    </div>
+
+    <!-- #Username -->
+    <div class="form-group">
+      <label class="form-label">
+        Tên đăng nhập
+      </label>
+      <input formControlName="username"
+             type="email"
+             id="username"
+             class="form-control form-control-lg"
+             placeholder="" />
+      @if(
+      this.loginForm.get('username')?.hasError('required')
+      && this.showErrorWhenSubmit
+      ) {
+      <div class="invalid-feedback d-block">
+        Tên đăng nhập không được để trống
+      </div>
+      }
+    </div>
+
+    <!-- #Password -->
+    <div class="mb-2">
+      <label class="form-label">
+        Mật khẩu
+      </label>
+      <input formControlName="password"
+             type="password"
+             autocomplete="off"
+             id="password"
+             class="form-control form-control-lg"
+             placeholder="" />
+
+      @if(
+      this.loginForm.get('password')?.hasError('required')
+      && this.showErrorWhenSubmit
+      ) {
+      <div class="invalid-feedback d-block">
+        Mật khẩu không được để trống
+      </div>
+      }
+    </div>
+
+    <!-- @if(this.ENABLE_CHOOSE_APP) {
+    <div class="mt-3 mb-2">
+      <app-choose-app [label]="'Chọn ứng dụng'"
+                      [class]="'form-control form-control-lg'"
+                      (choose)="this.setApp($event)"
+                      [displayRequire]="true"
+                      [displayError]="(this.loginForm.get('app')?.hasError('required') && this.loginForm.get('app')?.touched) ?? false">
+      </app-choose-app>
+    </div>
+    }
+
+    @if(!this.loginForm.get('reCapcha')?.value){
+    <re-captcha (resolved)="resolvedRecapCha($event)"
+                [siteKey]="this.RECAPCHA_SECRET_KEY">
+    </re-captcha>
+    } -->
+
+
+    <div class="row">
+      <div class="col-auto mr-auto">
+        <!-- Do something... -->
+        <!-- Ex: label check box remember -->
+      </div>
+      <div class="col-auto ml-auto">
+        <span (click)="this.navigateToForgotPassword()" class="text-primary font-weight-bold"><u><a
+               href="javascript:void(0)">Quên mật khẩu?</a></u></span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+
+    <!-- #Submit -->
+    <div class="row form-group">
+      <div class="col">
+        <button
+                class="btn btn-danger btn-block btn-lg waves-effect waves-themed d-flex justify-content-center align-items-center"
+                (click)="onLogin()"
+                [disabled]="this.loginForm.disabled">
+          <span *ngIf="this.isWaitingForLogin" class="spinner-border spinner-border-sm mr-2" role="status"
+                aria-hidden="true">
+          </span>
+          <strong transloco="features.auth.login.button.login">Đăng nhập</strong>
+        </button>
+      </div>
+    </div>
+  </form>
+  <!-- @if(this.ENABLE_LOGIN_BY_GOOGLE) {
+  <div class="d-flex justify-content-center mb-4">
+    <span>Hoặc</span>
+  </div>
+  <app-login-by-google>
+  </app-login-by-google>
+  }
+
+  @if (this.ENABLE_LOGIN_BY_FACEBOOK) {
+  <app-login-by-facebook></app-login-by-facebook>
+  } -->
+
+  <div class="row no-gutters justify-content-center mt-3">
+    <span class="mr-1">Chưa có tài khoản?</span>
+    <a class="hover-underline" (click)="this.navigateToRegister()"
+       href="javascript:void(0)">
+      Click để đăng ký
+    </a>
+  </div>
+
+</div>

@@ -1,0 +1,45 @@
+<!-- Form login -->
+Login component work
+<div class="row">
+  <div class="col col-md-6 col-lg-7 hidden-sm-down">
+    <h2 class="fs-xxl fw-500 mt-4 text-white">
+      {{ 'Tạp chí Phát triển & Hội nhập (Journal of Development and Integration)' }}
+      <!-- {{ translated("features.auth.login.rightPanel.header") }} -->
+      <small class="h3 fw-300 mt-3 mb-5 opacity-60">
+        {{ 'Kênh dành riêng cho thành viên của Tạp chí Phát triển & Hội nhập (Journal of Development and Integration)'
+        }}
+        <!-- {{ translated("features.auth.login.rightPanel.desc") }} -->
+      </small>
+    </h2>
+
+    <!-- <a class="fs-lg fw-500 text-white opacity-70"> -->
+    <!-- {{ 'Thông tin chi tiết' }}    -->
+    <!-- {{translated("features.auth.login.rightPanel.moreinfo")}} -->
+    <!-- </a> -->
+
+    <div class="d-sm-flex flex-column align-items-center justify-content-center d-md-block">
+      <div class="px-0 py-1 mt-5 text-white fs-nano opacity-50">
+        <!-- {{ translated('features.auth.login.rightPanel.contact') }} -->
+        {{ 'Liên hệ với chúng tôi' }}
+      </div>
+      <div class="d-flex flex-row opacity-70">
+        <a href="#" aria-label="Facebook IT Center"
+           class="mr-2 fs-xxl text-white">
+          <i class="fab fa-facebook-square"></i>
+        </a>
+        <a href="#" class="mr-2 fs-xxl text-white" aria-label="fa-twitter-square">
+          <i class="fab fa-twitter-square"></i>
+        </a>
+        <a href="#" class="mr-2 fs-xxl text-white" aria-label="google-plus-square">
+          <i class="fab fa-google-plus-square"></i>
+        </a>
+        <a href="#" class="mr-2 fs-xxl text-white" aria-label="fa-linkedin">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 ml-auto">
+    <app-login-form></app-login-form>
+  </div>
+</div>

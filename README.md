@@ -79,3 +79,5 @@ Tạo thư viện trong NX:
 ```bash
 npx nx g @nx/angular:library components --tags=ui --directory=./projects/libs/frontend/angular --projectNameAndRootFormat=derived
 ```
+
+npx nx g @nx/angular:library auth --tags=logic --directory=./projects/libs/frontend/angular --projectNameAndRootFormat=derived

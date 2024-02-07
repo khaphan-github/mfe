@@ -2,10 +2,12 @@ import { Routes } from '@angular/router';
 import { MemLayoutComponent } from './layouts/mem-layout/mem-layout.component';
 import { environment } from './config/environments/environment';
 import { loadRemote } from './helpers/load-remote';
+import { CanActivateAccessTokenGuard } from '@erp/projects/libs/frontend/angular/auth';
 
-export const memLayoutRoutes: Routes = [
+export const MEMBERS_LAYOUT_ROUTES: Routes = [
   {
     path: '',
+    canActivateChild: [CanActivateAccessTokenGuard],
     component: MemLayoutComponent,
     children: [
       {

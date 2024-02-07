@@ -18,10 +18,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   smartAdminConfigService = inject(SmartAdminConfigService);
 
   ngOnInit() {
-    if (isDevMode()) {
-      console.group(`Angular ${VERSION.full}`);
-      console.groupEnd();
-    }
+    isDevMode() && console.log(`Angular ${VERSION.full}`)
   }
 
   ngAfterViewInit(): void {

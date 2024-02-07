@@ -1,0 +1,11 @@
+/* @import url('src/assets/css/fa-brands.css'); */
+/* @import url('$assets/css/fa-brands.css'); */
+
+hr {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
+.hover-underline:hover {
+    text-decoration: underline !important;
+}

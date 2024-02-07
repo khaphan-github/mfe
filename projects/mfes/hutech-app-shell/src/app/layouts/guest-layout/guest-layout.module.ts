@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { GuestLayoutComponent } from './guest-layout.component';
-import { GuestRoutingModule } from './guest-layout.routing.module';
 import { TranslocoModule } from '@ngneat/transloco';
+import { RouterModule } from '@angular/router';
+import { GUEST_LAYOUT_ROUTES } from '../../guest-layout.routes';
 
 @NgModule({
   declarations: [
@@ -12,9 +13,8 @@ import { TranslocoModule } from '@ngneat/transloco';
   imports: [
     CommonModule,
     TranslocoModule,
-    GuestRoutingModule,
+    RouterModule.forChild(GUEST_LAYOUT_ROUTES)
   ],
-  providers: [
-  ]
+  providers: []
 })
 export class GuestLayoutModule { }

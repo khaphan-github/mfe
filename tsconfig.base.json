@@ -20,6 +20,9 @@
       ],
       "@erp/angular/logic": [
         "projects/libs/frontend/angular/logic/src/index.ts"
+      ],
+      "@erp/projects/libs/frontend/angular/auth": [
+        "projects/libs/frontend/angular/auth/src/index.ts"
       ]
     }
   },
