@@ -81,3 +81,9 @@ npx nx g @nx/angular:library components --tags=ui --directory=./projects/libs/fr
 ```
 
 npx nx g @nx/angular:library auth --tags=logic --directory=./projects/libs/frontend/angular --projectNameAndRootFormat=derived
+
+
+## Tạo thư viện trong nestjs
+```bash
+npx nx g @nx/nest:library auth --tags=logic --directory=./projects/libs/backend --projectNameAndRootFormat=derived
+```

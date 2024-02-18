@@ -1,0 +1,20 @@
+{
+  "name": "projects-libs-backend-auth",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "projects/libs/backend/auth/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "projects/libs/backend/auth/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["logic"]
+}

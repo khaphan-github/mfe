@@ -21,6 +21,9 @@
       "@erp/angular/logic": [
         "projects/libs/frontend/angular/logic/src/index.ts"
       ],
+      "@erp/projects/libs/backend/auth": [
+        "projects/libs/backend/auth/src/index.ts"
+      ],
       "@erp/projects/libs/frontend/angular/auth": [
         "projects/libs/frontend/angular/auth/src/index.ts"
       ]
