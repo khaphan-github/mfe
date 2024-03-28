@@ -87,7 +87,9 @@ npx nx g @nx/angular:library auth --tags=logic --directory=./projects/libs/front
 ```bash
 npx nx g @nx/nest:library auth --tags=logic --directory=./projects/libs/backend --projectNameAndRootFormat=derived
 ```
-
+```bash
+npx  nx g @nx/nest:app main-api --tags=api --directory=./projects/apps/demo-product --projectNameAndRootFormat=derived --frontendProject projects-apps-demo-product-main-web-angular
+```
 
 ```
 ServeAPP:"

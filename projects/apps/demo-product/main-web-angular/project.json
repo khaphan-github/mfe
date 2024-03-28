@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/projects/apps/demo-product/main-web-angular",
         "index": "projects/apps/demo-product/main-web-angular/src/index.html",
         "main": "projects/apps/demo-product/main-web-angular/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "projects/apps/demo-product/main-web-angular/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -82,7 +78,8 @@
       "defaultConfiguration": "development",
       "options": {
         "port": 4201,
-        "publicHost": "http://localhost:4201"
+        "publicHost": "http://localhost:4201",
+        "proxyConfig": "projects/apps/demo-product/main-web-angular/proxy.conf.json"
       }
     },
     "extract-i18n": {
@@ -94,15 +91,11 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ]
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "projects/apps/demo-product/main-web-angular/jest.config.ts"
       }
