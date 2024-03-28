@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
+    "all": "npx nx serve projects-mfes--hutech-app-shell --configuration=development && npx nx serve projects-apps-demo-product-main-web-angular --configuration=development"
   },
   "private": true,
   "devDependencies": {

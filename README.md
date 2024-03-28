@@ -95,3 +95,8 @@ ServeAPP:"
  npx nx serve   projects-apps-demo-product-main-web-angular --configuration=development
 
 ```
+
+
+TODO: 
+Problems need to resolve:
+1. How to config localstorage key?

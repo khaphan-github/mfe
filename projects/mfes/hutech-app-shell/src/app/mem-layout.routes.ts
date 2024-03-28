@@ -5,6 +5,7 @@ import { loadRemote } from './helpers/load-remote';
 import { CanActivateAccessTokenGuard } from '@erp/projects/libs/frontend/angular/auth';
 
 const { noiQuyLaoDong, demoProduct } = environment.microFeRemoteEntry;
+
 export const MEMBERS_LAYOUT_ROUTES: Routes = [
   {
     path: '',

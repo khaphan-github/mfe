@@ -1,27 +1,20 @@
+import { GLOBAL_ENV } from '@erp/angular/logic';
+
 export const environment = {
+  ...GLOBAL_ENV,
   authen: {
-    /** useMockData: Sử dụng mock data hay không? True: Có sử dụng (không gọi api)
-     * autoLoginByMockUser: Khi start project lên để dev. Hệ thống sẽ tự login và vào trong luôn.
-     */
-    useMockData: false,
-    autoLoginByMockUser: false,
+    useMockData: true, //api, constant
+    autoLoginByMockUser: true,
   },
+  //tu dong login
   domain: {
     main: '',
   },
   application: {
     appKey: '',
-    appId: 0,
-    http: {
-      timeout: 0
-    },
+    appId: 0, // <-- ID from backend
     reCapchaSecretKey: '',
     googleAuthClientID: '',
     facebookAuthSecretKey: '',
-    storage: {
-      cookies: {
-        expireInSeconds: 0
-      }
-    },
-  }
+  },
 };

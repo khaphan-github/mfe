@@ -1,40 +1,31 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CoreLocalStorageService } from './local-storage.service';
 import { CoreCookiesService } from './core-cookies.service';
 import { CoreSessionStorageService } from './core-session-storage.service';
 
-export enum StorageLocation {
-  LOCAL_STORAGE = 'LOCAL_STORAGE',
-  SESSION_STORAGE = 'SESSION_STORAGE',
-  COOKIES = 'COOKIES',
-}
-
-type Options = {
-  location: StorageLocation;
+export type Options = {
+  location: 'LOCAL_STORAGE' | 'SESSION_STORAGE' | 'COOKIES';
   expireInSeconds?: number;
-}
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppStorageService {
-  constructor(
-    private readonly localStorage: CoreLocalStorageService,
-    private readonly sessionStorage: CoreSessionStorageService,
-    private readonly cookie: CoreCookiesService,
-
-  ) { }
+  private readonly localStorage = inject(CoreLocalStorageService);
+  private readonly sessionStorage = inject(CoreSessionStorageService);
+  private readonly cookie = inject(CoreCookiesService);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public setItem(key: string, value: any, options: Options) {
     switch (options.location) {
-      case StorageLocation.LOCAL_STORAGE:
+      case 'LOCAL_STORAGE':
         this.localStorage.setItem(key, value);
         break;
-      case StorageLocation.SESSION_STORAGE:
+      case 'SESSION_STORAGE':
         this.sessionStorage.setItem(key, value);
         break;
-      case StorageLocation.COOKIES:
+      case 'COOKIES':
         this.cookie.setCookie(key, value, options.expireInSeconds);
         break;
       default:
@@ -45,11 +36,11 @@ export class AppStorageService {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getItem<T>(key: string, options: Options): T | any {
     switch (options.location) {
-      case StorageLocation.LOCAL_STORAGE:
+      case 'LOCAL_STORAGE':
         return this.localStorage.getItem<T>(key);
-      case StorageLocation.SESSION_STORAGE:
+      case 'SESSION_STORAGE':
         return this.sessionStorage.getItem<T>(key);
-      case StorageLocation.COOKIES:
+      case 'COOKIES':
         return this.cookie.getCookie(key);
       default:
         break;
@@ -58,13 +49,13 @@ export class AppStorageService {
 
   public removeItems(key: string[], options: Options) {
     switch (options.location) {
-      case StorageLocation.LOCAL_STORAGE:
+      case 'LOCAL_STORAGE':
         this.localStorage.removeItems(key);
         break;
-      case StorageLocation.SESSION_STORAGE:
+      case 'SESSION_STORAGE':
         this.sessionStorage.removeItems(key);
         break;
-      case StorageLocation.COOKIES:
+      case 'COOKIES':
         this.cookie.deleteCookies(key);
         break;
       default:
@@ -74,18 +65,16 @@ export class AppStorageService {
 
   public removeAllIn(options: Options) {
     switch (options.location) {
-      case StorageLocation.LOCAL_STORAGE:
+      case 'LOCAL_STORAGE':
         this.localStorage.clear();
         break;
-      case StorageLocation.SESSION_STORAGE:
+      case 'SESSION_STORAGE':
         this.sessionStorage.clear();
         break;
-      case StorageLocation.COOKIES:
+      case 'COOKIES':
         throw new Error(`Method not allowed`);
       default:
         break;
     }
   }
-
-
 }
