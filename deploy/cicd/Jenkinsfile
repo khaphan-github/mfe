@@ -1,0 +1,59 @@
+// https://hackmamba.io/blog/2022/04/running-docker-in-a-jenkins-container/
+// http://13.211.91.77/#/login
+
+// docker run -it -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home custom-jenkins-docker
+
+pipeline {
+    agent any
+    tools {
+        nodejs 'node_18.10.0'
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+    stages {
+        stage('Clone and install dependencies') {
+            steps {
+                sh 'pwd'
+
+            }
+        }
+
+        stage('Unit testing') {
+            steps {
+                script {
+                    echo 'Unit test web'
+                }
+            }
+        }
+
+        stage('Interation testing') {
+            steps {
+                script {
+                    echo 'Interation test web'
+                }
+            }
+        }
+
+        stage('Build docker image') {
+            steps {
+                script {
+                }
+            }
+        }
+
+        stage('Deploy aws') {
+            steps {
+                script {
+                    def serverAddress = ''
+
+                    sshagent(['AWS_EC2_LOW_CODE_PRIVATE_KEY']) {
+                    }
+
+                    sshagent(['AWS_EC2_LOW_CODE_PRIVATE_KEY']) {
+                    }
+                }
+            }
+        }
+    }
+}
