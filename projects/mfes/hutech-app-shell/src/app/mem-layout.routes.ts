@@ -4,6 +4,7 @@ import { environment } from './config/environments/environment';
 import { loadRemote } from './helpers/load-remote';
 import { CanActivateAccessTokenGuard } from '@erp/projects/libs/frontend/angular/auth';
 
+const { noiQuyLaoDong, demoProduct } = environment.microFeRemoteEntry;
 export const MEMBERS_LAYOUT_ROUTES: Routes = [
   {
     path: '',
@@ -12,14 +13,14 @@ export const MEMBERS_LAYOUT_ROUTES: Routes = [
     children: [
       {
         path: 'nqld',
-        loadComponent: () => loadRemote(environment.microFeRemoteEntry.noiQuyLaoDong, ''),
+        loadComponent: () => loadRemote(noiQuyLaoDong, ''),
       },
       {
         // Khi chuyển route trên app shell đến route này thì mfe product sẽ được load.
         path: 'product',
-        loadChildren: () => loadRemote(environment.microFeRemoteEntry.demoProduct, 'ProductModule'),
-      }
+        loadChildren: () => loadRemote(demoProduct, 'ProductModule'),
+      },
       // Add other remote entry;
-    ]
+    ],
   },
 ];
